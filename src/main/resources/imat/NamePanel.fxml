@@ -13,7 +13,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="656.0" layoutY="520.0" mnemonicParsing="false" text="Stäng" />
+      <Button layoutX="656.0" layoutY="520.0" mnemonicParsing="false" onAction="#closeNameView" text="Stäng" />
       <Label contentDisplay="RIGHT" layoutX="65.0" layoutY="302.0" text="Efternamn:">
          <font>
             <Font size="15.0" />
