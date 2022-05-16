@@ -1,8 +1,8 @@
-module org.dat216 {
+module dat216 {
     requires javafx.controls;
     requires javafx.fxml;
     requires projectbackend;
 
-    opens org.dat216 to javafx.fxml;
-    exports org.dat216;
+    opens imat to javafx.fxml;
+    exports imat;
 }
