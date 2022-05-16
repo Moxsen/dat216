@@ -34,10 +34,10 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private AnchorPane shopPane;
     @FXML
     private TextField searchField;
-    @FXML
-    private Label itemsLabel;
-    @FXML
-    private Label costLabel;
+    //@FXML
+    //private Label itemsLabel;
+    //@FXML
+    //private Label costLabel;
     @FXML
     private FlowPane productsFlowPane;
     
@@ -88,7 +88,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private void handleBuyItemsAction(ActionEvent event) {
         model.placeOrder();
-        costLabel.setText("Köpet klart!");
+        //costLabel.setText("Köpet klart!");
     }
 
     @FXML
@@ -164,8 +164,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
         
         ShoppingCart shoppingCart = model.getShoppingCart();
         
-        itemsLabel.setText("Antal varor: " + shoppingCart.getItems().size());
-        costLabel.setText("Kostnad: " + String.format("%.2f",shoppingCart.getTotal()));
+        //itemsLabel.setText("Antal varor: " + shoppingCart.getItems().size());
+        //costLabel.setText("Kostnad: " + String.format("%.2f",shoppingCart.getTotal()));
         
     }
     
