@@ -59,20 +59,13 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutY="501.0" prefHeight="59.0" prefWidth="720.0" style="-fx-background-color: #ff6600;">
-                     <children>
-                        <Button layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleClearCartAction" text="Töm" />
-                        <Button layoutX="663.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleBuyItemsAction" text="Köp" />
-                        <Label fx:id="itemsLabel" layoutX="139.0" layoutY="21.0" prefHeight="17.0" prefWidth="150.0" text="Antal varor: 3456" />
-                        <Label fx:id="costLabel" layoutX="479.0" layoutY="21.0" text="Kostnad: 3456.60" />
-                        <Button layoutX="312.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleNameAction" text="Mina uppgifter" />
-                     </children>
-                  </AnchorPane>
-                  <ScrollPane hbarPolicy="NEVER" layoutY="102.0" prefHeight="398.0" prefWidth="720.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0">
+                  <ScrollPane hbarPolicy="NEVER" layoutY="102.0" prefHeight="430.0" prefWidth="720.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="102.0">
                      <content>
-                        <FlowPane fx:id="productsFlowPane" prefHeight="395.0" prefWidth="718.0" style="-fx-background-color: #5e6d70;" vgap="4.0" />
+                        <FlowPane fx:id="productsFlowPane" prefHeight="457.0" prefWidth="516.0" style="-fx-background-color: #5e6d70;" vgap="4.0" />
                      </content>
                   </ScrollPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="102.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="102.0" />
+                  <AnchorPane prefHeight="200.0" prefWidth="102.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="102.0" />
                </children>
             </AnchorPane>
          </children>
