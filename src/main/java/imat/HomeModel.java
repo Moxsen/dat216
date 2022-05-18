@@ -13,12 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javafx.scene.image.Image;
-import se.chalmers.cse.dat216.project.CreditCard;
-import se.chalmers.cse.dat216.project.Customer;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingCart;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import se.chalmers.cse.dat216.project.*;
 
 
 /**
@@ -60,6 +55,18 @@ public class HomeModel {
 
     public List<Product> getProducts() {
         return iMatDataHandler.getProducts();
+    }
+
+    public List<ProductCategory> getProductCategories() {
+        List<ProductCategory> productCategoryList = new ArrayList<ProductCategory>();
+        List<Product> productList = getProducts();
+        for (Product product : productList
+        ) {
+            if (!productCategoryList.contains(product.getCategory()))
+                productCategoryList.add(product.getCategory());
+        }
+        //TODO Sort in nice order
+        return productCategoryList;
     }
 
     public Product getProduct(int idNbr) {

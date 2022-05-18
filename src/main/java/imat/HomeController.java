@@ -11,17 +11,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import se.chalmers.cse.dat216.project.CartEvent;
-import se.chalmers.cse.dat216.project.CreditCard;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingCart;
-import se.chalmers.cse.dat216.project.ShoppingCartListener;
+import se.chalmers.cse.dat216.project.*;
 
 
 /**
@@ -65,8 +58,35 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private AnchorPane dynamicPane;
 
+    // Categories pane
+    @FXML
+    private Accordion categoryAccordion;
+
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        model.getShoppingCart().addShoppingCartListener(this);
+
+        updateProductList(model.getProducts());
+        updateBottomPanel();
+        updateLeftPanel();
+
+        setupAccountPane();
+
+        // Load the NamePanel and add it to dynamicPane
+        // This shows how one can develop a view in a separate
+        // FXML-file and then load it into on of the panes in the main interface
+        // There is an fxml file NamePanel.fxml and a corresponding class NamePanel.java
+        // Simply create a new NamePanel object and add it as a child of dynamicPane
+        // The NamePanel holds a reference to the main controller (this class)
+        AnchorPane namePane = new NamePanel(this);
+        dynamicPane.getChildren().add(namePane);
+
+    }
 
     // Shop pane actions
     @FXML
@@ -104,28 +124,29 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private void handleDoneAction(ActionEvent event) {
         closeAccountView();
     }
-      
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        model.getShoppingCart().addShoppingCartListener(this);
+     // Categories pane actions
+    @FXML
+    private void openFavorites() {
+        System.out.println("Open favs");
+    }
 
-        updateProductList(model.getProducts());
-        updateBottomPanel();
-        
-        setupAccountPane();
+    private void updateLeftPanel() {
+        List<TitledPane> titledPanes = categoryAccordion.getPanes();
 
-        // Load the NamePanel and add it to dynamicPane
-        // This shows how one can develop a view in a separate
-        // FXML-file and then load it into on of the panes in the main interface
-        // There is an fxml file NamePanel.fxml and a corresponding class NamePanel.java
-        // Simply create a new NamePanel object and add it as a child of dynamicPane
-        // The NamePanel holds a reference to the main controller (this class)
-        AnchorPane namePane = new NamePanel(this);
-        dynamicPane.getChildren().add(namePane);
+        for (ProductCategory productCategory: model.getProductCategories()
+             ) {
+            TitledPane titledPane = new TitledPane();
+            titledPane.setText(productCategory.name());
 
-    }    
-    
+            titledPanes.add(titledPane);
+        }
+
+        for (TitledPane tp:titledPanes
+        ) {
+            System.out.println(tp);
+        }
+    }
+
     // Navigation
     public void openAccountView() {
         updateAccountPanel();
