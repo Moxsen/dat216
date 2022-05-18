@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.*;
@@ -125,26 +127,43 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private void handleDoneAction(ActionEvent event) {
         closeAccountView();
     }
-     // Categories pane actions
+
+    // Categories pane actions
     @FXML
     private void openFavorites() {
         System.out.println("Open favs");
     }
+    @FXML
+    private List<Product> selectCategory(String text) {
+        System.out.println("Category: " + text);
+        List<Product> products = model.getProductsInCategory(text);
+        for (Product p: products
+             ) {
+            System.out.println(p.getName());
+        }
+        return products;
+    }
 
     private void updateLeftPanel() {
-        List<TitledPane> titledPanes = categoryAccordion.getPanes();
+        fillCategoryAccordion(categoryAccordion.getPanes());
+    }
 
+    private void fillCategoryAccordion(List<TitledPane> titledPanes) {
         for (ProductCategory productCategory: model.getProductCategories()
              ) {
             TitledPane titledPane = new TitledPane();
+            titledPane.setCollapsible(false);
+            titledPane.setAccessibleText(productCategory.name());
             titledPane.setText(productCategory.name().toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", productCategory.name().substring(0,1)));
-
+            titledPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    TitledPane sourceTitledPane = (TitledPane) mouseEvent.getSource();
+                    //selectCategory(sourceTitledPane.getAccessibleText());
+                    updateProductList(selectCategory(sourceTitledPane.getAccessibleText()));
+                }
+            });
             titledPanes.add(titledPane);
-        }
-
-        for (TitledPane tp:titledPanes
-        ) {
-            System.out.println(tp);
         }
     }
 

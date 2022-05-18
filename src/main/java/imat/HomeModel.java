@@ -140,4 +140,9 @@ public class HomeModel {
     public void shutDown() {
         iMatDataHandler.shutDown();
     }
+
+    public List<Product> getProductsInCategory(String text) {
+        return iMatDataHandler.getProducts(ProductCategory.valueOf(text));
+
+    }
 }
