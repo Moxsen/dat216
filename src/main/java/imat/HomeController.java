@@ -7,6 +7,7 @@ package imat;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -136,7 +137,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         for (ProductCategory productCategory: model.getProductCategories()
              ) {
             TitledPane titledPane = new TitledPane();
-            titledPane.setText(productCategory.name());
+            titledPane.setText(productCategory.name().toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", productCategory.name().substring(0,1)));
 
             titledPanes.add(titledPane);
         }
