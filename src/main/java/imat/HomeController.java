@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -40,6 +41,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     //private Label costLabel;
     @FXML
     private FlowPane productsFlowPane;
+    @FXML
+    private ScrollPane centerPane;
     
     // Account Pane
     @FXML
@@ -155,7 +158,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
         for (Product product : products) {
 
-            productsFlowPane.getChildren().add(new ProductPanel(product));
+            productsFlowPane.getChildren().add(new ProductPanel(this, product));
         }
 
     }
@@ -214,5 +217,14 @@ public class HomeController implements Initializable, ShoppingCartListener {
         
         yearCombo.getItems().addAll(model.getYears());
         
+    }
+
+    public void handleProductView(Product product) {
+        System.out.println("Open " + product.getName());
+
+        ProductDetail productDetail = new ProductDetail(product);
+
+        centerPane.setVisible(false);
+        shopPane.getChildren().add(productDetail);
     }
 }

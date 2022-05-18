@@ -1,3 +1,7 @@
-.accent-1{
--fx-background-color: D1D1D1;
+.accent-1 {
+    -fx-background-color: D1D1D1;
+}
+
+.clickable:hover {
+    -fx-cursor: hand;
 }

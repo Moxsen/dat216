@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="443.84" prefWidth="972.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="443.84" prefWidth="972.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="102.0">
+         <children>
+            <ImageView fx:id="imageView" fitHeight="309.0" fitWidth="235.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="134.0" />
+            <Button layoutX="96.0" layoutY="247.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="41.0" prefWidth="46.63" text="+" AnchorPane.leftAnchor="634.51" AnchorPane.topAnchor="183.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Label fx:id="nameLabel" layoutX="17.0" layoutY="16.0" text="Produktnamn" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="16.0">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+            <Label fx:id="prizeLabel" layoutX="104.0" layoutY="81.0" text="37,99 kr" AnchorPane.leftAnchor="322.0" AnchorPane.topAnchor="179.0">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Label prefWidth="548.0" text="Glockengold Multivitamin Fruktdryck är en mix av en mängd goda frukter förstärkt med flera vitaminer och 1 provitamin. Fruktinnehållet är 30%. Innehåller socker och sötningsmedel." wrapText="true" AnchorPane.leftAnchor="324.0" AnchorPane.topAnchor="308.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

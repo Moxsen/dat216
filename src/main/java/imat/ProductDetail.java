@@ -5,41 +5,35 @@
  */
 package imat;
 
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
+
+import java.io.IOException;
 
 /**
  *
  * @author oloft
  */
-public class ProductPanel extends AnchorPane {
+public class ProductDetail extends AnchorPane {
 
-    @FXML AnchorPane productPane;
+    private HomeModel model = HomeModel.getInstance();
+
+    private Product product;
+
     @FXML ImageView imageView;
     @FXML Label nameLabel;
     @FXML Label prizeLabel;
-    @FXML Label ecoLabel;
-    
-    private HomeModel model = HomeModel.getInstance();
 
-    private HomeController mainController;
-
-    private Product product;
-    
     private final static double kImageWidth = 100.0;
     private final static double kImageRatio = 0.75;
 
-    public ProductPanel(HomeController mainController, Product product) {
-        
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductPanel.fxml"));
+    public ProductDetail(Product product) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductDetail.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -49,22 +43,16 @@ public class ProductPanel extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        this.mainController = mainController;
-
         this.product = product;
+
         nameLabel.setText(product.getName());
         prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit());
         imageView.setImage(model.getImage(product, kImageWidth, kImageWidth*kImageRatio));
-        if (!product.isEcological()) {
-            ecoLabel.setText("");
-        }
-
-        productPane.setOnMouseClicked((MouseEvent e) -> mainController.handleProductView(this.product));
     }
-    
+
     @FXML
     private void handleAddAction(ActionEvent event) {
-        System.out.println("Add " + product.getName());
-        model.addToShoppingCart(product);
+        System.out.println("Add " + this.product.getName());
+        model.addToShoppingCart(this.product);
     }
 }

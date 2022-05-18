@@ -59,7 +59,7 @@
                         </Button>
                      </children>
                   </AnchorPane>
-                  <ScrollPane hbarPolicy="NEVER" layoutY="102.0" prefHeight="430.0" prefWidth="720.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="102.0">
+                  <ScrollPane fx:id="centerPane" hbarPolicy="NEVER" layoutY="102.0" prefHeight="430.0" prefWidth="720.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="102.0" AnchorPane.topAnchor="102.0">
                      <content>
                         <FlowPane fx:id="productsFlowPane" prefHeight="457.0" prefWidth="516.0" style="-fx-background-color: #5e6d70;" vgap="4.0" />
                      </content>
