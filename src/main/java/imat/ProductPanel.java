@@ -59,7 +59,7 @@ public class ProductPanel extends AnchorPane {
             ecoLabel.setText("");
         }
 
-        productPane.setOnMouseClicked((MouseEvent e) -> mainController.handleProductView(this.product));
+        productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this.product));
     }
     
     @FXML

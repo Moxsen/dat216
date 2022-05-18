@@ -31,6 +31,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
+            <Button layoutX="357.0" layoutY="30.0" mnemonicParsing="false" onAction="#closeProductView" prefHeight="41.0" prefWidth="46.63" styleClass="clickable" stylesheets="@iMat.css" text="X">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

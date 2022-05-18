@@ -23,6 +23,8 @@ public class ProductDetail extends AnchorPane {
 
     private HomeModel model = HomeModel.getInstance();
 
+    private HomeController mainController;
+
     private Product product;
 
     @FXML ImageView imageView;
@@ -32,7 +34,7 @@ public class ProductDetail extends AnchorPane {
     private final static double kImageWidth = 100.0;
     private final static double kImageRatio = 0.75;
 
-    public ProductDetail(Product product) {
+    public ProductDetail(HomeController mainController, Product product) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductDetail.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -42,6 +44,8 @@ public class ProductDetail extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        this.mainController = mainController;
 
         this.product = product;
 
@@ -54,5 +58,11 @@ public class ProductDetail extends AnchorPane {
     private void handleAddAction(ActionEvent event) {
         System.out.println("Add " + this.product.getName());
         model.addToShoppingCart(this.product);
+    }
+
+    @FXML
+    private void closeProductView(ActionEvent event) {
+        System.out.println("Close " + this.product.getName());
+        this.mainController.closeProductView(this);
     }
 }
