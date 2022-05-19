@@ -57,16 +57,14 @@ public class HomeModel {
         return iMatDataHandler.getProducts();
     }
 
-    public List<ProductCategory> getProductCategories() {
-        List<ProductCategory> productCategoryList = new ArrayList<ProductCategory>();
-        List<Product> productList = getProducts();
-        for (Product product : productList
-        ) {
-            if (!productCategoryList.contains(product.getCategory()))
-                productCategoryList.add(product.getCategory());
+    public List<String> getProductCategories() {
+        List<String> result = new ArrayList<>();
+        for (ProductCategory productCategory: ProductCategory.values()
+             ) {
+            result.add(productCategory.toString());
         }
         //TODO Sort in nice order
-        return productCategoryList;
+        return result;
     }
 
     public Product getProduct(int idNbr) {

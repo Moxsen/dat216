@@ -148,12 +148,12 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
 
     private void fillCategoryAccordion(List<TitledPane> titledPanes) {
-        for (ProductCategory productCategory: model.getProductCategories()
+        for (String productCategoryString: model.getProductCategories()
              ) {
             TitledPane titledPane = new TitledPane();
             titledPane.setCollapsible(false);
-            titledPane.setAccessibleText(productCategory.name());
-            titledPane.setText(productCategory.name().toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", productCategory.name().substring(0,1)));
+            titledPane.setAccessibleText(productCategoryString);
+            titledPane.setText(productCategoryString.toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", productCategoryString.substring(0,1)));
             titledPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
