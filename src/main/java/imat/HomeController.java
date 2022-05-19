@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import se.chalmers.cse.dat216.project.*;
 
 
@@ -37,6 +38,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     //private Label costLabel;
     @FXML
     private FlowPane productsFlowPane;
+    @FXML
+    private GridPane productGridPane;
     @FXML
     private ScrollPane centerPane;
     
@@ -131,17 +134,12 @@ public class HomeController implements Initializable, ShoppingCartListener {
     // Categories pane actions
     @FXML
     private void openFavorites() {
-        System.out.println("Open favs");
+
     }
     @FXML
     private List<Product> selectCategory(String text) {
-        System.out.println("Category: " + text);
-        List<Product> products = model.getProductsInCategory(text);
-        for (Product p: products
-             ) {
-            System.out.println(p.getName());
-        }
-        return products;
+        return model.getProductsInCategory(text);
+
     }
 
     private void updateLeftPanel() {
@@ -196,10 +194,10 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
         System.out.println("updateProductList " + products.size());
         productsFlowPane.getChildren().clear();
-
+        //productGridPane.getChildren().clear();
         for (Product product : products) {
-
             productsFlowPane.getChildren().add(new ProductPanel(this, product));
+            //productGridPane.getChildren().add(new ProductPanel(this, product));
         }
 
     }
