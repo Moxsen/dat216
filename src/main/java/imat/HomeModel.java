@@ -145,4 +145,8 @@ public class HomeModel {
         return iMatDataHandler.getProducts(ProductCategory.valueOf(text));
 
     }
+
+    public List<Product> getFavorites() {
+        return iMatDataHandler.favorites();
+    }
 }

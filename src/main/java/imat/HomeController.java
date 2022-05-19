@@ -134,7 +134,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     // Categories pane actions
     @FXML
     private void openFavorites() {
-
+        updateProductList(model.getFavorites());
     }
     @FXML
     private List<Product> selectCategory(String text) {
@@ -142,6 +142,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     }
 
+    //Controller stuff
     private void updateLeftPanel() {
         fillCategoryAccordion(categoryAccordion.getPanes());
     }
@@ -157,7 +158,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     TitledPane sourceTitledPane = (TitledPane) mouseEvent.getSource();
-                    //selectCategory(sourceTitledPane.getAccessibleText());
                     updateProductList(selectCategory(sourceTitledPane.getAccessibleText()));
                 }
             });
