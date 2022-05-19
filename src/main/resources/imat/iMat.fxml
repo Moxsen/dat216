@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
     <children>
         <StackPane prefHeight="560.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <AnchorPane fx:id="dynamicPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: blue;" />
                 <AnchorPane fx:id="accountPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);">
-                    <children>
-                        <AnchorPane layoutX="138.0" layoutY="136.0" prefHeight="289.0" prefWidth="444.0" style="-fx-background-color: #e0e0e0;">
+               <children>
+                        <AnchorPane prefHeight="289.0" prefWidth="444.0" style="-fx-background-color: #e0e0e0;" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="150.0">
                             <children>
                                 <Label layoutX="135.0" layoutY="56.0" text="Korttyp:" textAlignment="RIGHT" />
                                 <Label layoutX="105.0" layoutY="98.0" text="Kortnummer:" textAlignment="RIGHT" />
@@ -44,8 +44,7 @@
                                 </Label>
                             </children>
                         </AnchorPane>
-                    </children>
-                </AnchorPane>
+               </children></AnchorPane>
                 <AnchorPane fx:id="shopPane" prefHeight="240.0" prefWidth="720.0" style="-fx-background-color: #FFF000;">
                     <children>
                         <AnchorPane fx:id="topPane" prefHeight="100.0" style="-fx-background-color: #ff6600;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -71,6 +70,9 @@
                                             <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                             </content>
+                                 <padding>
+                                    <Insets bottom="15.0" />
+                                 </padding>
                                         </TitledPane>
                                     </panes>
                                 </Accordion>
