@@ -137,8 +137,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
         updateProductList(model.getFavorites());
     }
     @FXML
-    private List<Product> selectCategory(String text) {
-        return model.getProductsInCategory(text);
+    private void openCategory(String text) {
+        updateProductList(model.getProductsInCategory(text));
 
     }
 
@@ -158,7 +158,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     TitledPane sourceTitledPane = (TitledPane) mouseEvent.getSource();
-                    updateProductList(selectCategory(sourceTitledPane.getAccessibleText()));
+                    openCategory(sourceTitledPane.getAccessibleText());
                 }
             });
             titledPanes.add(titledPane);
