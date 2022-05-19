@@ -21,8 +21,8 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("iMat.fxml"));
 
-        Scene scene = new Scene(root);
-        //Scene scene = new Scene(root, 1120, 630);
+        //Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 780, 630);
         
         stage.setScene(scene);
         stage.show();
