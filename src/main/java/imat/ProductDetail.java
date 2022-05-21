@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
@@ -30,6 +31,7 @@ public class ProductDetail extends AnchorPane {
     @FXML ImageView imageView;
     @FXML Label nameLabel;
     @FXML Label prizeLabel;
+    @FXML TextField productCount;
 
     private final static double kImageWidth = 100.0;
     private final static double kImageRatio = 0.75;
@@ -57,7 +59,17 @@ public class ProductDetail extends AnchorPane {
     @FXML
     private void handleAddAction(ActionEvent event) {
         System.out.println("Add " + this.product.getName());
+        productCount.setText(String.valueOf(Integer.parseInt(productCount.getText()) + 1));
         model.addToShoppingCart(this.product);
+        model.printShoppingCart();
+    }
+
+    @FXML
+    private void handleRemoveAction(ActionEvent event) {
+        System.out.println("Remove " + product.getName());
+        productCount.setText(String.valueOf(Integer.parseInt(productCount.getText()) - 1));
+        model.removeFromShoppingCart(product);
+        model.printShoppingCart();
     }
 
     @FXML

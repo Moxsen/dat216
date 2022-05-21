@@ -84,12 +84,20 @@ public class HomeModel {
     }
 
     public void addToShoppingCart(Product p) {
-        ShoppingCart shoppingCart = iMatDataHandler.getShoppingCart();
-
         ShoppingItem item = new ShoppingItem(p);
         HomeModel.getInstance().getShoppingCart().addItem(item);
-        
-        //shoppingCart.addProduct(p);
+    }
+
+    public void removeFromShoppingCart(Product p) {
+        ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
+        ShoppingItem item = new ShoppingItem(p);
+        // Should be a better way to do this but couldn't find it
+        for(ShoppingItem i : cart.getItems()) {
+            if(i.getProduct().getName().equals(item.getProduct().getName())) {
+                cart.removeItem(i);
+                break;
+            }
+        }
     }
 
     public List<String> getCardTypes() {
@@ -114,6 +122,14 @@ public class HomeModel {
 
     public ShoppingCart getShoppingCart() {
         return iMatDataHandler.getShoppingCart();
+    }
+
+    public void printShoppingCart() {
+        System.out.print("CART: ");
+        for(ShoppingItem item : this.getShoppingCart().getItems()) {
+            System.out.print(item.getProduct().getName() + ", ");
+        }
+        System.out.println();
     }
 
     public void clearShoppingCart() {

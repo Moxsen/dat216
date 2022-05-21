@@ -11,10 +11,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 /**
  *
@@ -27,6 +29,7 @@ public class ProductPanel extends AnchorPane {
     @FXML Label nameLabel;
     @FXML Label prizeLabel;
     @FXML Label ecoLabel;
+    @FXML TextField productCount;
     
     private HomeModel model = HomeModel.getInstance();
 
@@ -52,8 +55,8 @@ public class ProductPanel extends AnchorPane {
         this.mainController = mainController;
 
         this.product = product;
-        nameLabel.setText(product.getName());
-        prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit());
+        nameLabel.setText(product.getName() + " (" + product.getUnitSuffix() + ")");
+        prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit().substring(0, 2));
         imageView.setImage(model.getImage(product, kImageWidth, kImageWidth*kImageRatio));
         if (!product.isEcological()) {
             ecoLabel.setText("");
@@ -65,6 +68,16 @@ public class ProductPanel extends AnchorPane {
     @FXML
     private void handleAddAction(ActionEvent event) {
         System.out.println("Add " + product.getName());
+        productCount.setText(String.valueOf(Integer.parseInt(productCount.getText()) + 1));
         model.addToShoppingCart(product);
+        model.printShoppingCart();
+    }
+
+    @FXML
+    private void handleRemoveAction(ActionEvent event) {
+        System.out.println("Remove " + product.getName());
+        productCount.setText(String.valueOf(Integer.parseInt(productCount.getText()) - 1));
+        model.removeFromShoppingCart(product);
+        model.printShoppingCart();
     }
 }
