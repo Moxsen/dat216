@@ -1,7 +1,30 @@
-.accent-1 {
-    -fx-background-color: D1D1D1;
-}
 
 .clickable:hover {
     -fx-cursor: hand;
 }
+.borders {
+    -fx-background-color: #A4F788;
+}
+.background {
+    -fx-background-color: #F0FFEC;
+}
+.accent {
+    -fx-background-color: #68E540;
+}
+.weird {
+    -fx-background-color: #D1D1D1;
+}
+
+.color-primary-0 { -fx-background-color: #A3F788 }	/* Main Primary color */
+.color-primary-1 { -fx-background-color: #F0FFEC }
+.color-primary-2 { -fx-background-color: #C7FCB6 }
+.color-primary-3 { -fx-background-color: #84F062 }
+.color-primary-4 { -fx-background-color: #68E540 }
+
+/* Palette color codes */
+/* Palette URL: http://paletton.com/#uid=12S0u0k5XMa0z+32IUQa4Aof9sI */
+.color-primary  { -fx-background-color: #B9E3C0 }	/* Main Primary color */
+.color-accent-1 { -fx-background-color: #F9FDFA }
+.color-accent-2 { -fx-background-color: #DFF3E2 }
+.color-accent-3 { -fx-background-color: #8DCD98 }
+.color-accent-4 { -fx-background-color: #5CAF6B }
