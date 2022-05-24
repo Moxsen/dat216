@@ -104,7 +104,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
 
     private void updateTopPanel() {
-         searchField = new TextField("Sök bland våra matvaror...");
 
     }
 
@@ -114,14 +113,25 @@ public class HomeController implements Initializable, ShoppingCartListener {
         openAccountView();
     }
 
+    //Search field actions
     @FXML
-    private void handleSearchAction(ActionEvent event) {
+    private void handleSearchAction() {
         List<Product> matches = model.findProducts(searchField.getText());
         updateProductList(matches);
         System.out.println("# matching products: " + matches.size());
-
     }
 
+    public void handleSearchTyping(KeyEvent keyEvent) {
+        if (searchField.getText().length() > 2) {
+            productsFlowPane.setStyle("-fx-background-color: FFFFFF");
+            handleSearchAction();
+        }
+        else productsFlowPane.setStyle("-fx-background-color: ACACAC");
+    }
+
+    private void clearSearchField() {searchField.clear();}
+
+    //Shopping cart actions
     @FXML
     private void handleClearCartAction(ActionEvent event) {
         model.clearShoppingCart();
@@ -148,12 +158,14 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private void openFavorites() {
         updateProductList(model.getFavorites());
+        clearSearchField();
     }
     @FXML
     private void openCategory(MouseEvent mouseEvent) {
         Button source = (Button) mouseEvent.getSource();
         if (source.getText() == "Favoriter") openFavorites();
         else updateProductList(model.getProductsInCategory(source.getAccessibleText()));
+        clearSearchField();
     }
 
     //Controller stuff

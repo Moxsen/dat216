@@ -44,7 +44,7 @@
                     <children>
                         <AnchorPane fx:id="topPane" prefHeight="100.0" styleClass="color-primary" stylesheets="@iMat.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <TextField fx:id="searchField" layoutX="150.0" layoutY="34.0" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="476.0" promptText="Sök vara" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="34.0">
+                                <TextField fx:id="searchField" layoutX="150.0" layoutY="34.0" onAction="#handleSearchAction" onKeyTyped="#handleSearchTyping" prefHeight="35.0" prefWidth="476.0" promptText="Sök bland våra matvaror.." AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="34.0">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
