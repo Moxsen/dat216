@@ -9,11 +9,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -26,12 +30,16 @@ import se.chalmers.cse.dat216.project.*;
  * @author oloft
  */
 public class HomeController implements Initializable, ShoppingCartListener {
-    
+
+    // Top pane
+    @FXML AnchorPane topPane;
+    @FXML
+    private TextField searchField;
+
     // Shopping Pane
     @FXML
     private AnchorPane shopPane;
-    @FXML
-    private TextField searchField;
+
     //@FXML
     //private Label itemsLabel;
     //@FXML
@@ -42,17 +50,17 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private GridPane productGridPane;
     @FXML
     private ScrollPane centerPane;
-    
+
     // Account Pane
     @FXML
     private AnchorPane accountPane;
-    @FXML 
+    @FXML
     ComboBox cardTypeCombo;
     @FXML
     private TextField numberTextField;
     @FXML
     private TextField nameTextField;
-    @FXML 
+    @FXML
     private ComboBox monthCombo;
     @FXML
     private ComboBox yearCombo;
@@ -66,7 +74,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     // Categories pane
     @FXML
-    private Accordion categoryAccordion;
+    private FlowPane categoryFlowPane;
 
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
@@ -78,6 +86,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         model.getShoppingCart().addShoppingCartListener(this);
 
         updateProductList(model.getProducts());
+        updateTopPanel();
         updateBottomPanel();
         updateLeftPanel();
 
@@ -94,26 +103,30 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     }
 
+    private void updateTopPanel() {
+         searchField = new TextField("Sök bland våra matvaror...");
+
+    }
+
     // Shop pane actions
     @FXML
     private void handleShowAccountAction(ActionEvent event) {
         openAccountView();
     }
-    
+
     @FXML
     private void handleSearchAction(ActionEvent event) {
-        
         List<Product> matches = model.findProducts(searchField.getText());
         updateProductList(matches);
         System.out.println("# matching products: " + matches.size());
 
     }
-    
+
     @FXML
     private void handleClearCartAction(ActionEvent event) {
         model.clearShoppingCart();
     }
-    
+
     @FXML
     private void handleBuyItemsAction(ActionEvent event) {
         model.placeOrder();
@@ -126,7 +139,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
 
     // Account pane actions
-     @FXML
+    @FXML
     private void handleDoneAction(ActionEvent event) {
         closeAccountView();
     }
@@ -137,31 +150,35 @@ public class HomeController implements Initializable, ShoppingCartListener {
         updateProductList(model.getFavorites());
     }
     @FXML
-    private void openCategory(String text) {
-        updateProductList(model.getProductsInCategory(text));
-
+    private void openCategory(MouseEvent mouseEvent) {
+        Button source = (Button) mouseEvent.getSource();
+        if (source.getText() == "Favoriter") openFavorites();
+        else updateProductList(model.getProductsInCategory(source.getAccessibleText()));
     }
 
     //Controller stuff
     private void updateLeftPanel() {
-        fillCategoryAccordion(categoryAccordion.getPanes());
+        updateFlowPane(categoryFlowPane.getChildren());
     }
 
-    private void fillCategoryAccordion(List<TitledPane> titledPanes) {
+    private void updateFlowPane(ObservableList<Node> nodes) {
+        fillCategoryFlowPane(nodes);
+    }
+
+    private void fillCategoryFlowPane(ObservableList<Node> nodes) {
         for (String productCategoryString: model.getProductCategories()
-             ) {
-            TitledPane titledPane = new TitledPane();
-            titledPane.setCollapsible(false);
-            titledPane.setAccessibleText(productCategoryString);
-            titledPane.setText(productCategoryString.toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", productCategoryString.substring(0,1)));
-            titledPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        ) {
+            Button button = new Button(productCategoryString.toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", productCategoryString.substring(0,1)));
+            button.setAccessibleText(productCategoryString);
+            button.getStyleClass().setAll("categoryButton");
+            //button.setStyle("-fx-pref-width: 180; -fx-text-alignment: left; -fx-padding: 15; ");
+            button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    TitledPane sourceTitledPane = (TitledPane) mouseEvent.getSource();
-                    openCategory(sourceTitledPane.getAccessibleText());
+                    openCategory(mouseEvent);
                 }
             });
-            titledPanes.add(titledPane);
+            nodes.add(button);
         }
     }
 
@@ -185,77 +202,73 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
     // Shope pane methods
     @Override
-     public void shoppingCartChanged(CartEvent evt) {
+    public void shoppingCartChanged(CartEvent evt) {
         updateBottomPanel();
     }
-   
-    
-    private void updateProductList(List<Product> products) {
 
+
+    private void updateProductList(List<Product> products) {
         System.out.println("updateProductList " + products.size());
         productsFlowPane.getChildren().clear();
-        //productGridPane.getChildren().clear();
         for (Product product : products) {
             productsFlowPane.getChildren().add(new ProductPanel(this, product));
-            //productGridPane.getChildren().add(new ProductPanel(this, product));
         }
-
     }
-    
+
     private void updateBottomPanel() {
-        
+
         ShoppingCart shoppingCart = model.getShoppingCart();
-        
+
         //itemsLabel.setText("Antal varor: " + shoppingCart.getItems().size());
         //costLabel.setText("Kostnad: " + String.format("%.2f",shoppingCart.getTotal()));
-        
+
     }
-    
+
     private void updateAccountPanel() {
-        
+
         CreditCard card = model.getCreditCard();
-        
+
         numberTextField.setText(card.getCardNumber());
         nameTextField.setText(card.getHoldersName());
-        
+
         cardTypeCombo.getSelectionModel().select(card.getCardType());
         monthCombo.getSelectionModel().select(""+card.getValidMonth());
         yearCombo.getSelectionModel().select(""+card.getValidYear());
 
         cvcField.setText(""+card.getVerificationCode());
-        
+
         purchasesLabel.setText(model.getNumberOfOrders()+ " tidigare inköp hos iMat");
-        
+
     }
-    
+
     private void updateCreditCard() {
-        
+
         CreditCard card = model.getCreditCard();
-        
+
         card.setCardNumber(numberTextField.getText());
         card.setHoldersName(nameTextField.getText());
-        
+
         String selectedValue = (String) cardTypeCombo.getSelectionModel().getSelectedItem();
         card.setCardType(selectedValue);
-        
+
         selectedValue = (String) monthCombo.getSelectionModel().getSelectedItem();
         card.setValidMonth(Integer.parseInt(selectedValue));
-        
+
         selectedValue = (String) yearCombo.getSelectionModel().getSelectedItem();
         card.setValidYear(Integer.parseInt(selectedValue));
-        
+
         card.setVerificationCode(Integer.parseInt(cvcField.getText()));
 
     }
-    
+
     private void setupAccountPane() {
-                
+
         cardTypeCombo.getItems().addAll(model.getCardTypes());
-        
+
         monthCombo.getItems().addAll(model.getMonths());
-        
+
         yearCombo.getItems().addAll(model.getYears());
-        
+
     }
 
     public void openProductView(Product product) {
@@ -271,4 +284,5 @@ public class HomeController implements Initializable, ShoppingCartListener {
         centerPane.setVisible(true);
         shopPane.getChildren().remove(productDetail);
     }
+
 }

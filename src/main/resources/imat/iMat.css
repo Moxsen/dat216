@@ -28,3 +28,48 @@
 .color-accent-2 { -fx-background-color: #DFF3E2 }
 .color-accent-3 { -fx-background-color: #8DCD98 }
 .color-accent-4 { -fx-background-color: #5CAF6B }
+
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+    -fx-cursor: hand;
+    -fx-padding: 10 px;
+    -fx-fill-width: 90%;
+    -fx-text-alignment: left;
+    -fx-border-style: none;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover, .accordion:pressed {
+
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    -fx-padding: 18px;
+    -fx-background-color: white;
+    -fx-display-caret: none;
+    -fx-text-overrun: hidden;
+}
+
+.category {
+    -fx-background-color: blue;
+}
+
+.button, .categoryButton {
+    -fx-padding: 2;
+    -fx-text-alignment: left;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: #DCDCDC;
+}
+
+.categoryButton {
+    -fx-pref-width: 180;
+    -fx-padding: 6;
+    -fx-background-insets: 3;
+}
+
+.categoryButton:hover {
+    -fx-background-color: #ACACAC;
+}
