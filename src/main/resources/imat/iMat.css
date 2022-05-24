@@ -57,19 +57,18 @@
 }
 
 .button, .categoryButton {
-    -fx-padding: 2;
-    -fx-text-alignment: left;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-background-color: #DCDCDC;
 }
 
 .categoryButton {
-    -fx-pref-width: 180;
-    -fx-padding: 6;
-    -fx-background-insets: 3;
+    -fx-pref-width: 160;
+    -fx-padding: 7;
+    -fx-background-insets: 2;
 }
 
 .categoryButton:hover {
+    -fx-background-insets: 0;
     -fx-background-color: #ACACAC;
 }

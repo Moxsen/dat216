@@ -30,6 +30,9 @@ import se.chalmers.cse.dat216.project.*;
  * @author oloft
  */
 public class HomeController implements Initializable, ShoppingCartListener {
+    //
+    // Strings
+    private String favs = "Favoriter";
 
     // Top pane
     @FXML AnchorPane topPane;
@@ -101,6 +104,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         AnchorPane namePane = new NamePanel(this);
         dynamicPane.getChildren().add(namePane);
 
+        searchField.requestFocus();
     }
 
     private void updateTopPanel() {
@@ -163,35 +167,40 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private void openCategory(MouseEvent mouseEvent) {
         Button source = (Button) mouseEvent.getSource();
-        if (source.getText() == "Favoriter") openFavorites();
+        if (source.getText().equals(favs)) openFavorites();
         else updateProductList(model.getProductsInCategory(source.getAccessibleText()));
         clearSearchField();
     }
 
     //Controller stuff
     private void updateLeftPanel() {
-        updateFlowPane(categoryFlowPane.getChildren());
+        updateCategoryFlowPane(categoryFlowPane.getChildren());
     }
 
-    private void updateFlowPane(ObservableList<Node> nodes) {
-        fillCategoryFlowPane(nodes);
+    private void updateCategoryFlowPane(ObservableList<Node> nodes) {
+        addCategory(nodes, favs);
+        nodes.get(nodes.size() - 1).setStyle("-fx-background-insets: 10 0 10 0; -fx-padding: 12; -fx-font-size: 18");
+        addCategories(nodes);
     }
 
-    private void fillCategoryFlowPane(ObservableList<Node> nodes) {
+    private void addCategories(ObservableList<Node> nodes) {
         for (String productCategoryString: model.getProductCategories()
         ) {
-            Button button = new Button(productCategoryString.toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", productCategoryString.substring(0,1)));
-            button.setAccessibleText(productCategoryString);
-            button.getStyleClass().setAll("categoryButton");
-            //button.setStyle("-fx-pref-width: 180; -fx-text-alignment: left; -fx-padding: 15; ");
-            button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    openCategory(mouseEvent);
-                }
-            });
-            nodes.add(button);
+            addCategory(nodes, productCategoryString);
         }
+    }
+
+    private void addCategory(ObservableList<Node> nodes, String text) {
+        Button button = new Button(text.toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", text.substring(0,1)));
+        button.setAccessibleText(text);
+        button.getStyleClass().setAll("categoryButton");
+        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                openCategory(mouseEvent);
+            }
+        });
+        nodes.add(button);
     }
 
     // Navigation
