@@ -10,6 +10,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -29,11 +30,10 @@ public class ProductPanel extends AnchorPane {
     @FXML Label nameLabel;
     @FXML Label prizeLabel;
     @FXML Label ecoLabel;
+    @FXML Button productRemove;
     @FXML TextField productCount;
     
     private HomeModel model = HomeModel.getInstance();
-
-    private HomeController mainController;
 
     private Product product;
     
@@ -52,8 +52,6 @@ public class ProductPanel extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        this.mainController = mainController;
-
         this.product = product;
         nameLabel.setText(product.getName() + " (" + product.getUnitSuffix() + ")");
         prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit().substring(0, 2));
@@ -62,22 +60,36 @@ public class ProductPanel extends AnchorPane {
             ecoLabel.setText("");
         }
 
-        productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this.product));
+        updateProductCount();
+
+        productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this, this.product));
+    }
+
+    public void updateProductCount() {
+        int count = model.getCartCountOf(product);
+        if (count > 0) {
+            productRemove.setVisible(true);
+            productCount.setVisible(true);
+            productCount.setText(String.valueOf(count));
+        } else {
+            productRemove.setVisible(false);
+            productCount.setVisible(false);
+        }
     }
     
     @FXML
     private void handleAddAction(ActionEvent event) {
         System.out.println("Add " + product.getName());
-        productCount.setText(String.valueOf(Integer.parseInt(productCount.getText()) + 1));
         model.addToShoppingCart(product);
         model.printShoppingCart();
+        updateProductCount();
     }
 
     @FXML
     private void handleRemoveAction(ActionEvent event) {
         System.out.println("Remove " + product.getName());
-        productCount.setText(String.valueOf(Integer.parseInt(productCount.getText()) - 1));
         model.removeFromShoppingCart(product);
         model.printShoppingCart();
+        updateProductCount();
     }
 }

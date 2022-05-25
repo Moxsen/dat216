@@ -100,6 +100,20 @@ public class HomeModel {
         }
     }
 
+    public int getCartCountOf(Product p) {
+        int count = 0;
+
+        ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
+        ShoppingItem item = new ShoppingItem(p);
+        for(ShoppingItem i : cart.getItems()) {
+            if(i.getProduct().getName().equals(item.getProduct().getName())) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public List<String> getCardTypes() {
         return availableCardTypes;
     }

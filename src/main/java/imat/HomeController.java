@@ -292,10 +292,10 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     }
 
-    public void openProductView(Product product) {
+    public void openProductView(ProductPanel panel, Product product) {
         System.out.println("Open " + product.getName());
 
-        ProductDetail productDetail = new ProductDetail(this, product);
+        ProductDetail productDetail = new ProductDetail(this, panel, product);
 
         centerPane.setVisible(false);
         shopPane.getChildren().add(productDetail);
