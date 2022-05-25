@@ -7,6 +7,7 @@ package imat;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ShoppingItem;
 
 /**
  *
@@ -64,6 +64,9 @@ public class ProductPanel extends AnchorPane {
         updateProductCount();
 
         productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this, this.product));
+
+        productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+        productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
     }
 
     public void updateProductCount() {
@@ -94,18 +97,21 @@ public class ProductPanel extends AnchorPane {
 
     @FXML
     public void handleProductCountEdit(KeyEvent keyEvent) {
-        int newCount = Integer.parseInt(productCount.getText());
+        try {
+            int newCount = Integer.parseInt(productCount.getText());
 
-        // Maybe increase count
-        for(int count = model.getCartCountOf(product); count < newCount && count < 9; count++) {
-            model.addToShoppingCart(product);
+            // Maybe increase count
+            for (int count = model.getCartCountOf(product); count < newCount; count++) {
+                model.addToShoppingCart(product);
+            }
+
+            // Maybe decrease count
+            for (int count = model.getCartCountOf(product); count > newCount; count--) {
+                model.removeFromShoppingCart(product);
+            }
+        } catch (NumberFormatException ignored) {} finally {
+            updateProductCount();
+            productCount.selectAll();
         }
-
-        // Maybe decrease count
-        for(int count = model.getCartCountOf(product); count > newCount; count--) {
-            model.removeFromShoppingCart(product);
-        }
-
-        updateProductCount();
     }
 }
