@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" stylesheets="@iMat.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" stylesheets="@iMat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
     <children>
         <StackPane prefHeight="560.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -44,7 +44,7 @@
                     <children>
                         <AnchorPane fx:id="topPane" prefHeight="100.0" styleClass="color-primary" stylesheets="@iMat.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <TextField fx:id="searchField" layoutX="150.0" layoutY="34.0" onAction="#handleSearchAction" onKeyTyped="#handleSearchTyping" prefHeight="35.0" prefWidth="476.0" promptText="Sök bland våra matvaror.." AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="34.0">
+                                <TextField fx:id="searchField" layoutX="150.0" layoutY="34.0" onAction="#handleSearchAction" onKeyTyped="#handleSearchTyping" prefHeight="35.0" prefWidth="476.0" promptText="Sök bland våra matvaror..." AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="34.0">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
@@ -114,7 +114,7 @@
                                         <Insets />
                                     </opaqueInsets>
                                     <padding>
-                                        <Insets bottom="150.0" left="10.0" right="10.0" top="10.0" />
+                                        <Insets bottom="150.0" left="60.0" right="60.0" top="10.0" />
                                     </padding></FlowPane>
                             </content>
                         </ScrollPane>
