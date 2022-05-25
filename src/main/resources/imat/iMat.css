@@ -50,7 +50,7 @@
     -fx-font-size: 20
 }
 
-.button:hover, .categoryButton:hover, .specialCategory:hover {
+.button:hover, .categoryButton:hover, .specialCategory:hover, .clickable:hover {
     -fx-cursor: hand;
     -fx-background-insets: 0;
     -fx-background-color: #ACACAC;

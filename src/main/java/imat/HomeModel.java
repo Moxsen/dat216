@@ -85,7 +85,9 @@ public class HomeModel {
 
     public void addToShoppingCart(Product p) {
         ShoppingItem item = new ShoppingItem(p);
-        HomeModel.getInstance().getShoppingCart().addItem(item);
+        if(getCartCountOf(p) < 9)
+            HomeModel.getInstance().getShoppingCart().addItem(item);
+        printShoppingCart();
     }
 
     public void removeFromShoppingCart(Product p) {
@@ -98,6 +100,7 @@ public class HomeModel {
                 break;
             }
         }
+        printShoppingCart();
     }
 
     public int getCartCountOf(Product p) {

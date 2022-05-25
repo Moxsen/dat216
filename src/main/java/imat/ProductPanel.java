@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
@@ -81,7 +82,6 @@ public class ProductPanel extends AnchorPane {
     private void handleAddAction(ActionEvent event) {
         System.out.println("Add " + product.getName());
         model.addToShoppingCart(product);
-        model.printShoppingCart();
         updateProductCount();
     }
 
@@ -89,7 +89,23 @@ public class ProductPanel extends AnchorPane {
     private void handleRemoveAction(ActionEvent event) {
         System.out.println("Remove " + product.getName());
         model.removeFromShoppingCart(product);
-        model.printShoppingCart();
+        updateProductCount();
+    }
+
+    @FXML
+    public void handleProductCountEdit(KeyEvent keyEvent) {
+        int newCount = Integer.parseInt(productCount.getText());
+
+        // Maybe increase count
+        for(int count = model.getCartCountOf(product); count < newCount && count < 9; count++) {
+            model.addToShoppingCart(product);
+        }
+
+        // Maybe decrease count
+        for(int count = model.getCartCountOf(product); count > newCount; count--) {
+            model.removeFromShoppingCart(product);
+        }
+
         updateProductCount();
     }
 }
