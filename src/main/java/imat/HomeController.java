@@ -35,14 +35,16 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private String favs = "Favoriter";
 
     // Top pane
-    @FXML AnchorPane topPane;
+    @FXML
+    AnchorPane topPane;
     @FXML
     private TextField searchField;
 
     // Shopping Pane
     @FXML
     private AnchorPane shopPane;
-
+    @FXML
+    private AnchorPane grayPane;
     //@FXML
     //private Label itemsLabel;
     //@FXML
@@ -103,6 +105,13 @@ public class HomeController implements Initializable, ShoppingCartListener {
         // The NamePanel holds a reference to the main controller (this class)
         AnchorPane namePane = new NamePanel(this);
         dynamicPane.getChildren().add(namePane);
+        grayPane.setStyle("-fx-background-color: F0F0F0");
+        grayPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                clearSearchField();
+            }
+        });
 
         searchField.requestFocus();
     }
@@ -120,21 +129,26 @@ public class HomeController implements Initializable, ShoppingCartListener {
     //Search field actions
     @FXML
     private void handleSearchAction() {
-        if (searchField.getText().length() == 0) return;
+        //if (searchField.getText().length() == 0) return;
         List<Product> matches = model.findProducts(searchField.getText());
         updateProductList(matches);
         System.out.println("# matching products: " + matches.size());
     }
 
     public void handleSearchTyping(KeyEvent keyEvent) {
-        if (searchField.getText().length() > 2) {
-            productsFlowPane.setStyle("-fx-background-color: FFFFFF");
+        if (searchField.lengthProperty().getValue() == 0) grayPane.toBack();
+        else if (searchField.lengthProperty().getValue() < 3) grayPane.toFront();
+        else {
+            grayPane.toBack();
             handleSearchAction();
         }
-        else productsFlowPane.setStyle("-fx-background-color: ACACAC");
     }
 
-    private void clearSearchField() {searchField.clear();}
+    private void clearSearchField() {
+        searchField.clear();
+        grayPane.toBack();
+
+    }
 
     //Shopping cart actions
     @FXML
@@ -161,17 +175,17 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     // Categories pane actions
     @FXML
-    private void handleCategoryClicked(MouseEvent mouseEvent) {
-        Button source = (Button) mouseEvent.getSource();
-        openCategory(source.getAccessibleText());
+    private void handleCategoryClicked(Button source) {
         clearSearchField();
+        openCategory(source.getAccessibleText());
     }
 
     private void openCategory(String categoryString) {
         if (categoryString.equals(favs)) openFavorites();
+        else if (categoryString.equals("Just nu")) handleSearchAction();
         else if (categoryString.equals("Fruit")) openFruitCategory();
         else if (categoryString.equals("Vegetable")) openVegetableCategory();
-        updateProductList(model.getProductsInCategory(categoryString));
+        else updateProductList(model.getProductsInCategory(categoryString));
     }
 
     private void openVegetableCategory() {
@@ -196,7 +210,11 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     private void updateCategoryFlowPane(ObservableList<Node> nodes) {
         addCategory(nodes, favs);
-        nodes.get(nodes.size() - 1).getStyleClass().setAll("specialCategory");
+        addCategory(nodes, "Just nu");
+        for (Node node : nodes
+        ) {
+            node.getStyleClass().setAll("specialCategory");
+        }
         addCategories(nodes);
     }
 
@@ -207,7 +225,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                handleCategoryClicked(mouseEvent);
+                handleCategoryClicked((Button) mouseEvent.getSource());
             }
         });
         nodes.add(button);
