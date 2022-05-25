@@ -1,7 +1,4 @@
 
-.clickable:hover {
-    -fx-cursor: hand;
-}
 .borders {
     -fx-background-color: #A4F788;
 }
@@ -27,48 +24,34 @@
 .color-accent-1 { -fx-background-color: #F9FDFA }
 .color-accent-2 { -fx-background-color: #DFF3E2 }
 .color-accent-3 { -fx-background-color: #8DCD98 }
-.color-accent-4 { -fx-background-color: #5CAF6B }
+.button, .categoryButton, .specialCategory { -fx-background-color: #5CAF6B }
 
-
-/* Style the buttons that are used to open and close the accordion panel */
-.accordion {
-    -fx-cursor: hand;
-    -fx-padding: 10 px;
-    -fx-fill-width: 90%;
-    -fx-text-alignment: left;
-    -fx-border-style: none;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover, .accordion:pressed {
-
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.panel {
-    -fx-padding: 18px;
-    -fx-background-color: white;
-    -fx-display-caret: none;
-    -fx-text-overrun: hidden;
-}
 
 .category {
     -fx-background-color: blue;
 }
 
-.button, .categoryButton {
+.button, .categoryButton, .specialCategory {
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-    -fx-background-color: #DCDCDC;
+    /*-fx-background-color: #DCDCDC;*/
 }
 
-.categoryButton {
+.categoryButton, .specialCategory {
+    -fx-font-size: 14;
     -fx-pref-width: 160;
     -fx-padding: 7;
     -fx-background-insets: 2;
 }
 
-.categoryButton:hover {
+.specialCategory {
+    -fx-background-insets: 10 0 10 0;
+    -fx-padding: 12;
+    -fx-font-size: 20
+}
+
+.button:hover, .categoryButton:hover, .specialCategory:hover {
+    -fx-cursor: hand;
     -fx-background-insets: 0;
     -fx-background-color: #ACACAC;
 }
