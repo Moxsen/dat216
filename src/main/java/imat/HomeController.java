@@ -120,6 +120,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     //Search field actions
     @FXML
     private void handleSearchAction() {
+        if (searchField.getText().length() == 0) return;
         List<Product> matches = model.findProducts(searchField.getText());
         updateProductList(matches);
         System.out.println("# matching products: " + matches.size());
@@ -160,34 +161,43 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     // Categories pane actions
     @FXML
-    private void openFavorites() {
-        updateProductList(model.getFavorites());
+    private void handleCategoryClicked(MouseEvent mouseEvent) {
+        Button source = (Button) mouseEvent.getSource();
+        openCategory(source.getAccessibleText());
         clearSearchField();
     }
-    @FXML
-    private void openCategory(MouseEvent mouseEvent) {
-        Button source = (Button) mouseEvent.getSource();
-        if (source.getText().equals(favs)) openFavorites();
-        else updateProductList(model.getProductsInCategory(source.getAccessibleText()));
-        clearSearchField();
+
+    private void openCategory(String categoryString) {
+        if (categoryString.equals(favs)) openFavorites();
+        else if (categoryString.equals("Fruit")) openFruitCategory();
+        else if (categoryString.equals("Vegetable")) openVegetableCategory();
+        updateProductList(model.getProductsInCategory(categoryString));
+    }
+
+    private void openVegetableCategory() {
+        categoryFlowPane.getChildren().clear();
+    }
+
+    private void openFruitCategory() {
+        //categoryFlowPane.getChildren().get(3).setVisible(!categoryFlowPane.getChildren().get(3).isVisible());
+        //categoryFlowPane.getChildren().get(3).setDisable(!categoryFlowPane.getChildren().get(3).isDisable());
+        categoryFlowPane.getChildren().add(1,categoryFlowPane.getChildren().get(3) );
+    }
+
+    private void openFavorites() {
+        updateProductList(model.getFavorites());
     }
 
     //Controller stuff
     private void updateLeftPanel() {
+        categoryFlowPane.getChildren().clear();
         updateCategoryFlowPane(categoryFlowPane.getChildren());
     }
 
     private void updateCategoryFlowPane(ObservableList<Node> nodes) {
         addCategory(nodes, favs);
-        nodes.get(nodes.size() - 1).setStyle("-fx-background-insets: 10 0 10 0; -fx-padding: 12; -fx-font-size: 18");
+        nodes.get(nodes.size() - 1).getStyleClass().setAll("specialCategory");
         addCategories(nodes);
-    }
-
-    private void addCategories(ObservableList<Node> nodes) {
-        for (String productCategoryString: model.getProductCategories()
-        ) {
-            addCategory(nodes, productCategoryString);
-        }
     }
 
     private void addCategory(ObservableList<Node> nodes, String text) {
@@ -197,10 +207,17 @@ public class HomeController implements Initializable, ShoppingCartListener {
         button.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                openCategory(mouseEvent);
+                handleCategoryClicked(mouseEvent);
             }
         });
         nodes.add(button);
+    }
+
+    private void addCategories(ObservableList<Node> nodes) {
+        for (String productCategoryString: model.getProductCategories()
+        ) {
+            addCategory(nodes, productCategoryString);
+        }
     }
 
     // Navigation
