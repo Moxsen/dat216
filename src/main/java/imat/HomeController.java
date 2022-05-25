@@ -126,6 +126,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         System.out.println("# matching products: " + matches.size());
     }
 
+    @FXML
     public void handleSearchTyping(KeyEvent keyEvent) {
         if (searchField.getText().length() > 2) {
             productsFlowPane.setStyle("-fx-background-color: FFFFFF");
