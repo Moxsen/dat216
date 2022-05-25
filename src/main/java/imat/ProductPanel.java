@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -28,6 +29,7 @@ public class ProductPanel extends AnchorPane {
 
     @FXML AnchorPane productPane;
     @FXML ImageView imageView;
+    @FXML ImageView heart;
     @FXML Label nameLabel;
     @FXML Label prizeLabel;
     @FXML Label ecoLabel;
@@ -57,12 +59,14 @@ public class ProductPanel extends AnchorPane {
         nameLabel.setText(product.getName() + " (" + product.getUnitSuffix() + ")");
         prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit().substring(0, 2));
         imageView.setImage(model.getImage(product, kImageWidth, kImageWidth*kImageRatio));
+        heart.setImage(new Image(getClass().getResource(".dat215/heart.png").toExternalForm()));
         if (!product.isEcological()) {
             ecoLabel.setText("");
         }
 
         updateProductCount();
 
+        heart.setOnMouseClicked((MouseEvent e) -> System.out.println("FAVORITE " + product.getName()));
         productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this, this.product));
 
         productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));

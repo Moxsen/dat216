@@ -135,6 +135,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         System.out.println("# matching products: " + matches.size());
     }
 
+    @FXML
     public void handleSearchTyping(KeyEvent keyEvent) {
         if (searchField.lengthProperty().getValue() == 0) grayPane.toBack();
         else if (searchField.lengthProperty().getValue() < 3) grayPane.toFront();
