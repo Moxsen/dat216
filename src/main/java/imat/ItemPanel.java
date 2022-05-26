@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import se.chalmers.cse.dat216.project.CartEvent;
+import se.chalmers.cse.dat216.project.ShoppingCartListener;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class ItemPanel extends AnchorPane {
     @FXML Label productTitleLabel;
     @FXML Label productPrizeLabel;
     @FXML Label productCount;
+    @FXML Button productAdd;
     @FXML Button productRemove;
 
     private HomeModel model = HomeModel.getInstance();
@@ -55,18 +58,16 @@ public class ItemPanel extends AnchorPane {
     private void updateItemPanel(ShoppingItem shoppingItem) {
         productTitleLabel.setText(shoppingItem.getProduct().getName() + " (" + shoppingItem.getProduct().getUnitSuffix() + ")");
         productPrizeLabel.setText(String.format("%.2f", shoppingItem.getProduct().getPrice()) + " " + shoppingItem.getProduct().getUnit().substring(0, 2));
-        productCount.setText("" + shoppingItem.getAmount());
-        //imageView.setImage(model.getImage(product, kImageWidth, kImageWidth*kImageRatio));
-
+        updateProductCount();
     }
 
     public void updateProductCount() {
-        int count = model.getCartCountOf(shoppingItem.getProduct());
-        System.out.println(count);
+        if (shoppingItem.getAmount() % 1 == 0) productCount.setText("" + (int) shoppingItem.getAmount());
+        else productCount.setText("" + shoppingItem.getAmount());
     }
     
     @FXML
-    private void handleAddAction(ActionEvent event) {
+    private void handleAddAction(ActionEvent actionEvent) {
         System.out.println("Add " + shoppingItem.getProduct().getName());
         model.addToShoppingCart(shoppingItem.getProduct());
 
@@ -74,9 +75,10 @@ public class ItemPanel extends AnchorPane {
     }
 
     @FXML
-    private void handleRemoveAction(ActionEvent event) {
+    private void handleRemoveAction(ActionEvent actionEvent) {
         System.out.println("Remove " + shoppingItem.getProduct().getName());
         model.removeFromShoppingCart(shoppingItem.getProduct());
+
         updateProductCount();
     }
 }

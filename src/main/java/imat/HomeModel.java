@@ -26,9 +26,9 @@ public class HomeModel {
     private static HomeModel instance = null;
     private IMatDataHandler iMatDataHandler;
 
-     private final ArrayList<String> availableCardTypes = new ArrayList<String>(Arrays.asList("MasterCard", "Visa"));
-     private final ArrayList<String> months = new ArrayList<String>(Arrays.asList("1", "2","3", "4", "5", "6"));
-     private final ArrayList<String> years = new ArrayList<String>(Arrays.asList("19", "20", "21", "22", "23", "24", "25"));
+    private final ArrayList<String> availableCardTypes = new ArrayList<String>(Arrays.asList("MasterCard", "Visa"));
+    private final ArrayList<String> months = new ArrayList<String>(Arrays.asList("1", "2","3", "4", "5", "6"));
+    private final ArrayList<String> years = new ArrayList<String>(Arrays.asList("19", "20", "21", "22", "23", "24", "25"));
     /**
      * Constructor that should never be called, use getInstance() instead.
      */
@@ -60,7 +60,7 @@ public class HomeModel {
     public List<String> getProductCategories() {
         List<String> result = new ArrayList<>();
         for (ProductCategory productCategory: ProductCategory.values()
-             ) {
+        ) {
             result.add(productCategory.toString());
         }
         //TODO Sort in nice order
@@ -70,7 +70,7 @@ public class HomeModel {
     public Product getProduct(int idNbr) {
         return iMatDataHandler.getProduct(idNbr);
     }
-    
+
     public List<Product> findProducts(java.lang.String s) {
         return iMatDataHandler.findProducts(s);
     }
@@ -83,11 +83,39 @@ public class HomeModel {
         return iMatDataHandler.getFXImage(p, width, height);
     }
 
-    public void addToShoppingCart(Product p) {
+    public boolean addToShoppingCart(Product p) {
         ShoppingItem item = new ShoppingItem(p);
-        if(getCartCountOf(p) < 9)
+        if (increaseAmountIfInCart(item));
+        else if (getCartCountOf(p) < 9)
             HomeModel.getInstance().getShoppingCart().addItem(item);
         printShoppingCart();
+        getShoppingCart().fireShoppingCartChanged(item,true);
+        return true;
+    }
+
+    private boolean increaseAmountIfInCart(ShoppingItem item) {
+        ShoppingItem itemAlreadyInCart = findInShoppingCart(item);
+        if (itemAlreadyInCart != null) {
+            itemAlreadyInCart.setAmount(itemAlreadyInCart.getAmount() + 1);
+            return true;
+        } else return false;
+
+    }
+
+
+    private boolean existsInShoppingCart(ShoppingItem p) {
+        if (findInShoppingCart(p) != null) return true;
+        return false;
+    }
+
+    ShoppingItem findInShoppingCart(ShoppingItem p) {
+        ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
+        for(ShoppingItem i : cart.getItems()) {
+            if(i.getProduct().getName().equals(p.getProduct().getName())) {
+                return i;
+            }
+        }
+        return null;
     }
 
     public void removeFromShoppingCart(Product p) {
@@ -96,21 +124,23 @@ public class HomeModel {
         // Should be a better way to do this but couldn't find it
         for(ShoppingItem i : cart.getItems()) {
             if(i.getProduct().getName().equals(item.getProduct().getName())) {
-                cart.removeItem(i);
+                if (i.getAmount() > 1) {
+                    i.setAmount(i.getAmount() - 1);
+                    getShoppingCart().fireShoppingCartChanged(item,true);
+                } else cart.removeItem(i);
                 break;
             }
         }
         printShoppingCart();
     }
 
-    public int getCartCountOf(Product p) {
-        int count = 0;
-
+    public Double getCartCountOf(Product p) {
+        Double count = 0.0;
         ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
         ShoppingItem item = new ShoppingItem(p);
         for(ShoppingItem i : cart.getItems()) {
             if(i.getProduct().getName().equals(item.getProduct().getName())) {
-                count++;
+                count = (count + i.getAmount());
             }
         }
 
@@ -120,19 +150,19 @@ public class HomeModel {
     public List<String> getCardTypes() {
         return availableCardTypes;
     }
-    
+
     public List<String> getMonths() {
         return months;
     }
-    
+
     public List<String> getYears() {
         return years;
     }
-    
+
     public CreditCard getCreditCard() {
         return iMatDataHandler.getCreditCard();
     }
-    
+
     public Customer getCustomer() {
         return iMatDataHandler.getCustomer();
     }
@@ -144,7 +174,7 @@ public class HomeModel {
     public void printShoppingCart() {
         System.out.print("CART: ");
         for(ShoppingItem item : this.getShoppingCart().getItems()) {
-            System.out.print(item.getProduct().getName() + ", ");
+            System.out.print(item.getAmount() + " " + item.getProduct().getName() + ", ");
         }
         System.out.println();
     }
@@ -161,7 +191,7 @@ public class HomeModel {
 
     }
 
-    
+
     public int getNumberOfOrders() {
 
         return iMatDataHandler.getOrders().size();

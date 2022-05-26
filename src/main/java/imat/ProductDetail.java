@@ -17,6 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 
@@ -64,12 +65,12 @@ public class ProductDetail extends AnchorPane {
 
         updateProductCount();
 
-        productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
-        productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+        //productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+        //productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
     }
 
     private void updateProductCount() {
-        int count = model.getCartCountOf(product);
+        Double count = model.getCartCountOf(product);
         if (count > 0) {
             productRemove.setVisible(true);
             productCount.setVisible(true);
@@ -104,9 +105,12 @@ public class ProductDetail extends AnchorPane {
     @FXML
     public void handleProductCountEdit(KeyEvent keyEvent) {
         try {
+            if (Integer.parseInt(productCount.getText()) < 0) productCount.setText("0");
+            else if (Integer.parseInt(productCount.getText()) > 99) productCount.setText("99");
             int newCount = Integer.parseInt(productCount.getText());
 
-            // Maybe increase count
+            model.findInShoppingCart(new ShoppingItem(product)).setAmount(Integer.parseInt(productCount.getText()));
+            /*// Maybe increase count
             for (int count = model.getCartCountOf(product); count < newCount; count++) {
                 model.addToShoppingCart(product);
             }
@@ -114,10 +118,10 @@ public class ProductDetail extends AnchorPane {
             // Maybe decrease count
             for (int count = model.getCartCountOf(product); count > newCount; count--) {
                 model.removeFromShoppingCart(product);
-            }
+            }*/
         } catch (NumberFormatException ignored) {} finally {
             updateProductCount();
-            productCount.selectAll();
+            //productCount.selectAll();
         }
     }
 }

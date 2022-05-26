@@ -96,7 +96,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
         updateRightPanel();
         updateTopPanel();
-        updateBottomPanel();
+        updateCenterPanel();
         updateLeftPanel();
         setupAccountPane();
 
@@ -126,13 +126,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     private void updateCartPanel() {
         cartFlowPane.getChildren().clear();
-        for (ShoppingItem item : model.getShoppingCart().getItems()
-             ) {
-            System.out.println("new " + item.getProduct().toString());
-            //cartFlowPane.getChildren().add(new Button(item.getProduct().getName()));
-
+        for (ShoppingItem item : model.getShoppingCart().getItems())
             cartFlowPane.getChildren().add(new ItemPanel(this, item));
-        }
     }
 
     private void updateTopPanel() {
@@ -148,7 +143,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     //Search field actions
     @FXML
     private void handleSearchAction() {
-        //if (searchField.getText().length() == 0) return;
+        if (searchField.lengthProperty().getValue() == 0) return;
         List<Product> matches = model.findProducts(searchField.getText());
         updateProductList(matches);
         System.out.println("# matching products: " + matches.size());
@@ -196,7 +191,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private void handleCategoryClicked(Button source) {
         clearSearchField();
-        updateCartPanel();
         openCategory(source.getAccessibleText());
     }
 
@@ -224,8 +218,12 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     //Controller stuff
     private void updateLeftPanel() {
-        categoryFlowPane.getChildren().clear();
+        clearCategoryFlowPane();
         updateCategoryFlowPane(categoryFlowPane.getChildren());
+    }
+
+    private void clearCategoryFlowPane() {
+        categoryFlowPane.getChildren().clear();
     }
 
     private void updateCategoryFlowPane(ObservableList<Node> nodes) {
@@ -279,7 +277,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     // Shope pane methods
     @Override
     public void shoppingCartChanged(CartEvent evt) {
-        updateBottomPanel();
+        updateCenterPanel();
+        updateCartPanel();
     }
 
 
@@ -291,7 +290,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         }
     }
 
-    private void updateBottomPanel() {
+    private void updateCenterPanel() {
 
         ShoppingCart shoppingCart = model.getShoppingCart();
 

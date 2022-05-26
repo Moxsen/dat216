@@ -20,6 +20,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 /**
  *
@@ -35,16 +36,16 @@ public class ProductPanel extends AnchorPane {
     @FXML Label ecoLabel;
     @FXML Button productRemove;
     @FXML TextField productCount;
-    
+
     private HomeModel model = HomeModel.getInstance();
 
     private Product product;
-    
+
     private final static double kImageWidth = 100.0;
     private final static double kImageRatio = 0.75;
 
     public ProductPanel(HomeController mainController, Product product) {
-        
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductPanel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -69,12 +70,12 @@ public class ProductPanel extends AnchorPane {
         heart.setOnMouseClicked((MouseEvent e) -> System.out.println("FAVORITE " + product.getName()));
         productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this, this.product));
 
-        productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
-        productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+        //productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+        //productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
     }
 
     public void updateProductCount() {
-        int count = model.getCartCountOf(product);
+        Double count = model.getCartCountOf(product);
         if (count > 0) {
             productRemove.setVisible(true);
             productCount.setVisible(true);
@@ -84,7 +85,7 @@ public class ProductPanel extends AnchorPane {
             productCount.setVisible(false);
         }
     }
-    
+
     @FXML
     private void handleAddAction(ActionEvent event) {
         System.out.println("Add " + product.getName());
@@ -101,9 +102,16 @@ public class ProductPanel extends AnchorPane {
 
     @FXML
     public void handleProductCountEdit(KeyEvent keyEvent) {
-        try {
-            int newCount = Integer.parseInt(productCount.getText());
+        if (productCount.lengthProperty().getValue() > 0) {
+            if (keyEvent.getCharacter() != ".") {
+                if (Double.parseDouble(productCount.getText()) < 0) productCount.setText("0");
+                else if (Double.parseDouble(productCount.getText()) > 99) productCount.setText("99");
+                double newCount = Double.parseDouble(productCount.getText());
+                System.out.println("Amount is " + newCount);
 
+                model.findInShoppingCart(new ShoppingItem(product)).setAmount(newCount);
+                model.getShoppingCart().fireShoppingCartChanged(new ShoppingItem(product), true);
+/*
             // Maybe increase count
             for (int count = model.getCartCountOf(product); count < newCount; count++) {
                 model.addToShoppingCart(product);
@@ -112,10 +120,11 @@ public class ProductPanel extends AnchorPane {
             // Maybe decrease count
             for (int count = model.getCartCountOf(product); count > newCount; count--) {
                 model.removeFromShoppingCart(product);
+            }*/
+
+                //updateProductCount();
+                //productCount.selectAll();
             }
-        } catch (NumberFormatException ignored) {} finally {
-            updateProductCount();
-            productCount.selectAll();
         }
     }
 }
