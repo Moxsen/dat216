@@ -102,6 +102,34 @@ public class HomeModel {
 
     }
 
+    public void decreaseIfInShoppingCart(ShoppingItem item) {
+        ShoppingItem itemAlreadyInCart = findInShoppingCart(item);
+        // Should be a better way to do this but couldn't find it
+        if (itemAlreadyInCart != null) {
+            if (item.getAmount() > 1) {
+                item.setAmount(item.getAmount() - 1);
+                getShoppingCart().fireShoppingCartChanged(item,true);
+            } else getShoppingCart().removeItem(item);
+        }
+        printShoppingCart();
+        getShoppingCart().fireShoppingCartChanged(item,true);
+    }
+
+
+    public void removeFromShoppingCart(Product p) {
+        ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
+        ShoppingItem item = new ShoppingItem(p);
+        // Should be a better way to do this but couldn't find it
+
+        cart.removeItem(findInShoppingCart(item));
+        for(ShoppingItem i : cart.getItems()) {
+            if(i.getProduct().getName().equals(item.getProduct().getName())) {
+                cart.removeItem(i);
+                getShoppingCart().fireShoppingCartChanged(item,true);
+            }
+        }
+        printShoppingCart();
+    }
 
     private boolean existsInShoppingCart(ShoppingItem p) {
         if (findInShoppingCart(p) != null) return true;
@@ -116,22 +144,6 @@ public class HomeModel {
             }
         }
         return null;
-    }
-
-    public void removeFromShoppingCart(Product p) {
-        ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
-        ShoppingItem item = new ShoppingItem(p);
-        // Should be a better way to do this but couldn't find it
-        for(ShoppingItem i : cart.getItems()) {
-            if(i.getProduct().getName().equals(item.getProduct().getName())) {
-                if (i.getAmount() > 1) {
-                    i.setAmount(i.getAmount() - 1);
-                    getShoppingCart().fireShoppingCartChanged(item,true);
-                } else cart.removeItem(i);
-                break;
-            }
-        }
-        printShoppingCart();
     }
 
     public Double getCartCountOf(Product p) {

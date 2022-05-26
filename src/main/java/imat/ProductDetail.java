@@ -5,7 +5,6 @@
  */
 package imat;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -91,7 +89,7 @@ public class ProductDetail extends AnchorPane {
     @FXML
     private void handleRemoveAction(ActionEvent event) {
         System.out.println("Remove " + product.getName());
-        model.removeFromShoppingCart(product);
+        model.decreaseIfInShoppingCart(new ShoppingItem(product));
         updateProductCount();
     }
 

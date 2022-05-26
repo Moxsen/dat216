@@ -12,8 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import se.chalmers.cse.dat216.project.CartEvent;
-import se.chalmers.cse.dat216.project.ShoppingCartListener;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
@@ -30,6 +28,8 @@ public class ItemPanel extends AnchorPane {
     @FXML Label productCount;
     @FXML Button productAdd;
     @FXML Button productRemove;
+    @FXML Button productDecrease;
+
 
     private HomeModel model = HomeModel.getInstance();
 
@@ -67,9 +67,17 @@ public class ItemPanel extends AnchorPane {
     }
     
     @FXML
-    private void handleAddAction(ActionEvent actionEvent) {
-        System.out.println("Add " + shoppingItem.getProduct().getName());
+    private void handleIncreaseAction(ActionEvent actionEvent) {
+        System.out.println("Increase " + shoppingItem.getProduct().getName());
         model.addToShoppingCart(shoppingItem.getProduct());
+
+        updateProductCount();
+    }
+
+    @FXML
+    private void handleDecreaseAction(ActionEvent actionEvent) {
+        System.out.println("Decrease " + shoppingItem.getProduct().getName());
+        model.decreaseIfInShoppingCart(shoppingItem);
 
         updateProductCount();
     }

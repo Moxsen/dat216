@@ -7,7 +7,6 @@ package imat;
 
 import java.io.IOException;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,11 +78,16 @@ public class ProductPanel extends AnchorPane {
         if (count > 0) {
             productRemove.setVisible(true);
             productCount.setVisible(true);
-            productCount.setText(String.valueOf(count));
+            updateProductCountLabel(count);
         } else {
             productRemove.setVisible(false);
             productCount.setVisible(false);
         }
+    }
+
+    public void updateProductCountLabel(Double count) {
+        if (count % 1 == 0) productCount.setText("" + count.intValue());
+        else productCount.setText("" + count);
     }
 
     @FXML
@@ -94,9 +98,9 @@ public class ProductPanel extends AnchorPane {
     }
 
     @FXML
-    private void handleRemoveAction(ActionEvent event) {
-        System.out.println("Remove " + product.getName());
-        model.removeFromShoppingCart(product);
+    private void handleDecreaseAction(ActionEvent event) {
+        System.out.println("Decrease " + product.getName());
+        model.decreaseIfInShoppingCart(new ShoppingItem(product));
         updateProductCount();
     }
 
