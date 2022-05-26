@@ -103,18 +103,19 @@ public class HomeModel {
     }
 
     public void decreaseIfInShoppingCart(ShoppingItem item) {
+        System.out.println("Decrease m ShoppingItem " + item.getAmount());
         ShoppingItem itemAlreadyInCart = findInShoppingCart(item);
         // Should be a better way to do this but couldn't find it
         if (itemAlreadyInCart != null) {
-            if (item.getAmount() > 1) {
-                item.setAmount(item.getAmount() - 1);
-                getShoppingCart().fireShoppingCartChanged(item,true);
-            } else getShoppingCart().removeItem(item);
+            if (itemAlreadyInCart.getAmount() > 1) {
+                itemAlreadyInCart.setAmount(itemAlreadyInCart.getAmount() - 1);
+                getShoppingCart().fireShoppingCartChanged(itemAlreadyInCart,true);
+            } else getShoppingCart().removeItem(itemAlreadyInCart);
         }
         printShoppingCart();
-        getShoppingCart().fireShoppingCartChanged(item,true);
-    }
+        getShoppingCart().fireShoppingCartChanged(itemAlreadyInCart,true);
 
+    }
 
     public void removeFromShoppingCart(Product p) {
         ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
@@ -131,15 +132,11 @@ public class HomeModel {
         printShoppingCart();
     }
 
-    private boolean existsInShoppingCart(ShoppingItem p) {
-        if (findInShoppingCart(p) != null) return true;
-        return false;
-    }
-
     ShoppingItem findInShoppingCart(ShoppingItem p) {
         ShoppingCart cart = HomeModel.getInstance().getShoppingCart();
         for(ShoppingItem i : cart.getItems()) {
             if(i.getProduct().getName().equals(p.getProduct().getName())) {
+                System.out.println(i.getProduct().getName() + " " + p.getProduct().getName());
                 return i;
             }
         }
@@ -202,7 +199,6 @@ public class HomeModel {
         iMatDataHandler.placeOrder();
 
     }
-
 
     public int getNumberOfOrders() {
 

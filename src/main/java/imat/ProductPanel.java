@@ -117,11 +117,7 @@ public class ProductPanel extends AnchorPane {
 
                 model.getShoppingCart().fireShoppingCartChanged(new ShoppingItem(product), true);
             }
-
         }
-
-
-
     }
 }
 
