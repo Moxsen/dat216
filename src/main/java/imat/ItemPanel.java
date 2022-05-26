@@ -57,7 +57,7 @@ public class ItemPanel extends AnchorPane {
 
     private void updateItemPanel(ShoppingItem shoppingItem) {
         productTitleLabel.setText(shoppingItem.getProduct().getName() + " (" + shoppingItem.getProduct().getUnitSuffix() + ")");
-        productPrizeLabel.setText(String.format("%.2f", shoppingItem.getProduct().getPrice()) + " " + shoppingItem.getProduct().getUnit().substring(0, 2));
+        productPrizeLabel.setText(String.format("%.2f", (shoppingItem.getProduct().getPrice()) * shoppingItem.getAmount()) + " " + shoppingItem.getProduct().getUnit().substring(0, 2));
         updateProductCount();
     }
 
@@ -70,7 +70,7 @@ public class ItemPanel extends AnchorPane {
     private void handleIncreaseAction(ActionEvent actionEvent) {
         System.out.println("Increase " + shoppingItem.getProduct().getName());
         model.addToShoppingCart(shoppingItem.getProduct());
-
+        model.getShoppingCart().fireShoppingCartChanged(shoppingItem,true);
         updateProductCount();
     }
 
@@ -78,7 +78,7 @@ public class ItemPanel extends AnchorPane {
     private void handleDecreaseAction(ActionEvent actionEvent) {
         System.out.println("Decrease " + shoppingItem.getProduct().getName());
         model.decreaseIfInShoppingCart(shoppingItem);
-
+        model.getShoppingCart().fireShoppingCartChanged(shoppingItem,false);
         updateProductCount();
     }
 

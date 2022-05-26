@@ -107,28 +107,21 @@ public class ProductPanel extends AnchorPane {
     @FXML
     public void handleProductCountEdit(KeyEvent keyEvent) {
         if (productCount.lengthProperty().getValue() > 0) {
-            if (keyEvent.getCharacter() != ".") {
-                if (Double.parseDouble(productCount.getText()) < 0) productCount.setText("0");
-                else if (Double.parseDouble(productCount.getText()) > 99) productCount.setText("99");
+            if (keyEvent.getCharacter().equals("."))
+                System.out.println(String.join(", ", "Pressed ", keyEvent.getCharacter()) + keyEvent.getCharacter().charAt(0));
+            else if (Double.parseDouble(productCount.getText()) < 0) productCount.setText("0");
+            else if (Double.parseDouble(productCount.getText()) > 99) productCount.setText("99");
+            else {
                 double newCount = Double.parseDouble(productCount.getText());
                 System.out.println("Amount is " + newCount);
-
                 model.findInShoppingCart(new ShoppingItem(product)).setAmount(newCount);
                 model.getShoppingCart().fireShoppingCartChanged(new ShoppingItem(product), true);
-/*
-            // Maybe increase count
-            for (int count = model.getCartCountOf(product); count < newCount; count++) {
-                model.addToShoppingCart(product);
             }
 
-            // Maybe decrease count
-            for (int count = model.getCartCountOf(product); count > newCount; count--) {
-                model.removeFromShoppingCart(product);
-            }*/
-
-                //updateProductCount();
-                //productCount.selectAll();
-            }
         }
+
+
+
     }
 }
+

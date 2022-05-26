@@ -93,6 +93,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         model.getShoppingCart().addShoppingCartListener(this);
+        updateProductList(model.getProducts());
 
         updateRightPanel();
         updateTopPanel();
@@ -100,6 +101,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         updateLeftPanel();
         setupAccountPane();
 
+        searchField.requestFocus();
         // Load the NamePanel and add it to dynamicPane
         // This shows how one can develop a view in a separate
         // FXML-file and then load it into on of the panes in the main interface
@@ -115,9 +117,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
             }
         });
 
-        updateProductList(model.getProducts());
 
-        searchField.requestFocus();
     }
 
     private void updateRightPanel() {
@@ -291,9 +291,12 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
 
     private void updateCenterPanel() {
-
         ShoppingCart shoppingCart = model.getShoppingCart();
-
+        for (Node node : productsFlowPane.getChildren()
+             ) {
+            ProductPanel prdPnl = (ProductPanel) node;
+            prdPnl.updateProductCount();
+        }
         //itemsLabel.setText("Antal varor: " + shoppingCart.getItems().size());
         //costLabel.setText("Kostnad: " + String.format("%.2f",shoppingCart.getTotal()));
 
