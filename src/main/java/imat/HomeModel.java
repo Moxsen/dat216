@@ -218,4 +218,17 @@ public class HomeModel {
     public List<Product> getFavorites() {
         return iMatDataHandler.favorites();
     }
+
+    public Boolean isFavorite(Product p) {
+        return iMatDataHandler.isFavorite(p);
+    }
+
+    public void addFavorite(Product p) {
+        iMatDataHandler.addFavorite(p);
+    }
+
+    public void removeFavorite(Product p) {
+        iMatDataHandler.removeFavorite(p);
+    }
+
 }

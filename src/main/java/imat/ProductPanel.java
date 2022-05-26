@@ -56,21 +56,39 @@ public class ProductPanel extends AnchorPane {
         }
 
         this.product = product;
+
         nameLabel.setText(product.getName() + " (" + product.getUnitSuffix() + ")");
         prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit().substring(0, 2));
         imageView.setImage(model.getImage(product, kImageWidth, kImageWidth*kImageRatio));
-        heart.setImage(new Image(getClass().getResource(".dat215/heart.png").toExternalForm()));
+
+        if(model.isFavorite(product)) {
+            heart.setImage(new Image(getClass().getResource(".dat215/heart2.png").toExternalForm()));
+        } else {
+            heart.setImage(new Image(getClass().getResource(".dat215/heart.png").toExternalForm()));
+        }
+
         if (!product.isEcological()) {
             ecoLabel.setText("");
         }
 
         updateProductCount();
 
-        heart.setOnMouseClicked((MouseEvent e) -> System.out.println("FAVORITE " + product.getName()));
+        heart.setOnMouseClicked(this::fav);
         productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this, this.product));
 
         //productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
         //productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+    }
+
+    private void fav(MouseEvent e) {
+        e.consume();
+        if(model.isFavorite(product)) {
+            heart.setImage(new Image(getClass().getResource(".dat215/heart.png").toExternalForm()));
+            model.removeFavorite(product);
+        } else {
+            heart.setImage(new Image(getClass().getResource(".dat215/heart2.png").toExternalForm()));
+            model.addFavorite(product);
+        }
     }
 
     public void updateProductCount() {
