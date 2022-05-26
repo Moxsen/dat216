@@ -67,8 +67,6 @@ public class AccountPanel extends AnchorPane {
         monthCombo.getSelectionModel().select(""+card.getValidMonth());
         yearCombo.getSelectionModel().select(""+card.getValidYear());
 
-        cvcField.setText(""+card.getVerificationCode());
-
         purchasesLabel.setText(model.getNumberOfOrders()+ " tidigare inköp hos iMat");
 
     }
@@ -100,8 +98,6 @@ public class AccountPanel extends AnchorPane {
 
         selectedValue = (String) yearCombo.getSelectionModel().getSelectedItem();
         card.setValidYear(Integer.parseInt(selectedValue));
-
-        card.setVerificationCode(Integer.parseInt(cvcField.getText()));
 
         this.toBack();
     }
