@@ -109,7 +109,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
 
     private void updateCartPanel() {
-        cartFlowPane.setVgap(4);
         cartFlowPane.getChildren().clear();
         for (ShoppingItem item : model.getShoppingCart().getItems())
             cartFlowPane.getChildren().add(new ItemPanel(this, item));

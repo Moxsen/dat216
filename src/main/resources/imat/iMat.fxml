@@ -28,7 +28,10 @@
                                         <Font size="18.0" />
                                     </font>
                                 </TextField>
-                                <Button layoutX="612.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="60.0" text="Sök" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="35.0" />
+                                <Button layoutX="612.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="60.0" text="Sök" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="35.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
                                 <Button layoutX="27.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleShowAccountAction" text="iMat" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="34.0">
                                     <font>
                                         <Font size="18.0" />
@@ -51,41 +54,44 @@
                         </AnchorPane>
                         <AnchorPane fx:id="rightPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                             <children>
-                                <SplitPane dividerPositions="0.8855721393034826" layoutX="8.0" layoutY="10.0" orientation="VERTICAL" prefHeight="415.0" prefWidth="102.0" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
+                                <SplitPane dividerPositions="0.8855721393034826" layoutX="8.0" layoutY="10.0" orientation="VERTICAL" prefHeight="373.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
                                     <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="313.0" prefWidth="100.0">
                                             <children>
-                                                <Button layoutX="-1.0" layoutY="331.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="102.0" text="Töm kundvagn" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
+                                                <Button layoutX="-1.0" layoutY="331.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="198.0" text="Töm kundvagn" textAlignment="CENTER" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="12.5" AnchorPane.rightAnchor="12.5">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
                                                 </Button>
-                                                <ScrollPane fx:id="rightCartPane" hbarPolicy="NEVER" layoutX="-70.0" layoutY="68.0" prefHeight="200.0" prefWidth="200.0" styleClass="color-accent-1" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <ScrollPane fx:id="rightCartPane" hbarPolicy="NEVER" layoutX="-70.0" layoutY="68.0" prefHeight="278.0" prefWidth="198.0" styleClass="color-accent-1" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="6.0">
                                        <content>
-                                          <FlowPane fx:id="cartFlowPane" prefHeight="200.0" prefWidth="200.0" />
+                                          <FlowPane fx:id="cartFlowPane" prefHeight="200.0" prefWidth="200.0" vgap="4.0" />
                                        </content></ScrollPane>
                                             </children>
                                         </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="76.0" prefWidth="100.0" styleClass="color-accent-1">
                                             <children>
-                                                <Label layoutX="14.0" layoutY="6.0" text="Totalt:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0" />
+                                                <Label layoutX="14.0" layoutY="6.0" text="Totalt:" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="3.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></Label>
                                                 <Label fx:id="totalCostLabel" layoutX="17.0" layoutY="14.0" text="0,00 KR" textAlignment="CENTER" underline="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0">
                                                     <font>
-                                                        <Font size="19.0" />
+                                                        <Font size="18.0" />
                                                     </font>
                                                 </Label>
                                             </children>
                                         </AnchorPane>
                                     </items>
                                 </SplitPane>
-                                <Button alignment="BASELINE_LEFT" layoutX="-35.0" layoutY="4.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Kundvagn" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <Button alignment="BASELINE_LEFT" layoutX="-35.0" layoutY="4.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-radius: 0;" text="Kundvagn" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="-17.0" layoutY="438.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Till Kundvagn" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <Button layoutX="28.0" layoutY="438.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Till Kassan" AnchorPane.bottomAnchor="12.5" AnchorPane.leftAnchor="12.5" AnchorPane.rightAnchor="12.5">
                                     <font>
-                                        <Font size="13.0" />
+                                        <Font size="16.0" />
                                     </font>
                                 </Button>
                             </children></AnchorPane>
