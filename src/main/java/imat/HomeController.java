@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import se.chalmers.cse.dat216.project.*;
 
 
@@ -39,6 +40,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     AnchorPane topPane;
     @FXML
     private TextField searchField;
+    @FXML
+    VBox dynamicArea;
 
     // Shopping Pane
     @FXML
@@ -55,24 +58,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private GridPane productGridPane;
     @FXML
     private ScrollPane centerPane;
-
-    // Account Pane
-    @FXML
-    private AnchorPane accountPane;
-    @FXML
-    ComboBox cardTypeCombo;
-    @FXML
-    private TextField numberTextField;
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private ComboBox monthCombo;
-    @FXML
-    private ComboBox yearCombo;
-    @FXML
-    private TextField cvcField;
-    @FXML
-    private Label purchasesLabel;
 
     @FXML
     private AnchorPane dynamicPane;
@@ -99,7 +84,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
         updateTopPanel();
         updateCenterPanel();
         updateLeftPanel();
-        setupAccountPane();
 
         searchField.requestFocus();
         // Load the NamePanel and add it to dynamicPane
@@ -108,8 +92,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
         // There is an fxml file NamePanel.fxml and a corresponding class NamePanel.java
         // Simply create a new NamePanel object and add it as a child of dynamicPane
         // The NamePanel holds a reference to the main controller (this class)
-        AnchorPane namePane = new NamePanel(this);
-        dynamicPane.getChildren().add(namePane);
+        AnchorPane accountPane = new AccountPanel(this, model.getCreditCard());
+        dynamicArea.getChildren().add(accountPane);
         grayPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -182,10 +166,13 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
 
     // Account pane actions
+
+
     @FXML
-    private void handleDoneAction(ActionEvent event) {
-        closeAccountView();
-    }
+    private void handleOpenAccountAction(ActionEvent event) { openAccountView(); }
+
+    //@FXML
+   // private void handleDoneAction(ActionEvent event) {closeAccountView();}
 
     // Categories pane actions
     @FXML
@@ -258,12 +245,12 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     // Navigation
     public void openAccountView() {
-        updateAccountPanel();
-        accountPane.toFront();
+
+        dynamicPane.toFront();
     }
 
     public void closeAccountView() {
-        updateCreditCard();
+        //updateCreditCard();
         shopPane.toFront();
     }
 
@@ -299,53 +286,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
         }
         //itemsLabel.setText("Antal varor: " + shoppingCart.getItems().size());
         //costLabel.setText("Kostnad: " + String.format("%.2f",shoppingCart.getTotal()));
-
-    }
-
-    private void updateAccountPanel() {
-
-        CreditCard card = model.getCreditCard();
-
-        numberTextField.setText(card.getCardNumber());
-        nameTextField.setText(card.getHoldersName());
-
-        cardTypeCombo.getSelectionModel().select(card.getCardType());
-        monthCombo.getSelectionModel().select(""+card.getValidMonth());
-        yearCombo.getSelectionModel().select(""+card.getValidYear());
-
-        cvcField.setText(""+card.getVerificationCode());
-
-        purchasesLabel.setText(model.getNumberOfOrders()+ " tidigare inköp hos iMat");
-
-    }
-
-    private void updateCreditCard() {
-
-        CreditCard card = model.getCreditCard();
-
-        card.setCardNumber(numberTextField.getText());
-        card.setHoldersName(nameTextField.getText());
-
-        String selectedValue = (String) cardTypeCombo.getSelectionModel().getSelectedItem();
-        card.setCardType(selectedValue);
-
-        selectedValue = (String) monthCombo.getSelectionModel().getSelectedItem();
-        card.setValidMonth(Integer.parseInt(selectedValue));
-
-        selectedValue = (String) yearCombo.getSelectionModel().getSelectedItem();
-        card.setValidYear(Integer.parseInt(selectedValue));
-
-        card.setVerificationCode(Integer.parseInt(cvcField.getText()));
-
-    }
-
-    private void setupAccountPane() {
-
-        cardTypeCombo.getItems().addAll(model.getCardTypes());
-
-        monthCombo.getItems().addAll(model.getMonths());
-
-        yearCombo.getItems().addAll(model.getYears());
 
     }
 
