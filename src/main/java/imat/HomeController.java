@@ -19,10 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import se.chalmers.cse.dat216.project.*;
 
 
@@ -35,6 +32,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     // Strings
     private String favs = "Favoriter";
 
+    @FXML
+    StackPane stackPane;
     // Top pane
     @FXML
     AnchorPane topPane;
@@ -72,6 +71,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
+    private AccountPanel accountPane;
 
 
     @Override
@@ -92,8 +92,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
         // There is an fxml file NamePanel.fxml and a corresponding class NamePanel.java
         // Simply create a new NamePanel object and add it as a child of dynamicPane
         // The NamePanel holds a reference to the main controller (this class)
-        AnchorPane accountPane = new AccountPanel(this, model.getCreditCard());
-        dynamicArea.getChildren().add(accountPane);
+        accountPane = new AccountPanel(this, model.getCreditCard());
+        stackPane.getChildren().add(accountPane);
         grayPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -246,7 +246,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     // Navigation
     public void openAccountView() {
 
-        dynamicPane.toFront();
+        accountPane.toFront();
     }
 
     public void closeAccountView() {

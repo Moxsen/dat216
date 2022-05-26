@@ -103,6 +103,7 @@ public class AccountPanel extends AnchorPane {
 
         card.setVerificationCode(Integer.parseInt(cvcField.getText()));
 
+        this.toBack();
     }
 
 

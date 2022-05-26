@@ -7,17 +7,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" stylesheets="@iMat.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
     <children>
-        <StackPane prefHeight="560.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <StackPane fx:id="stackPane" prefHeight="560.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <AnchorPane fx:id="dynamicPane">
-               <children>
-                  <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <VBox fx:id="dynamicArea" alignment="CENTER" />
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="grayPane" opacity="0.7" prefHeight="200.0" prefWidth="200.0">
                <StackPane.margin>
                   <Insets left="200.0" right="200.0" top="100.0" />
