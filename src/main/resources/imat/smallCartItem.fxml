@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root fx:id="itemPane" prefWidth="150.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="itemPane" prefWidth="200.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="productTitleLabel" layoutX="24.0" layoutY="18.0" text="Titel" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
          <font>
@@ -17,12 +18,12 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="productAdd" layoutX="54.0" layoutY="22.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="clickable" text="+" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="5.0">
+      <Button fx:id="productAdd" layoutX="54.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="20.0" prefWidth="20.0" styleClass="clickable" text="+" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="2.0">
          <font>
             <Font size="10.0" />
          </font>
       </Button>
-      <Button fx:id="productRemove" layoutX="50.0" layoutY="27.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" styleClass="clickable" text="-" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="25.0">
+      <Button fx:id="productRemove" layoutX="50.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleRemoveAction" prefHeight="20.0" prefWidth="20.0" styleClass="clickable" text="-" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="57.0">
          <font>
             <Font size="10.0" />
          </font>
@@ -32,7 +33,7 @@
             <Font size="8.0" />
          </font>
       </Button>
-      <Label fx:id="productCount" layoutX="13.0" layoutY="13.0" text="XX" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="26.0">
+      <Label fx:id="productCount" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="13.0" prefWidth="35.0" text="XX" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="22.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -42,4 +43,7 @@
       <String fx:value="clickable" />
       <String fx:value="color-accent-3" />
    </styleClass>
+   <padding>
+      <Insets bottom="1.0" left="5.0" right="5.0" top="1.0" />
+   </padding>
 </fx:root>
