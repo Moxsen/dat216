@@ -81,6 +81,10 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private FlowPane categoryFlowPane;
 
+    //Cart pane
+    @FXML
+    private FlowPane cartFlowPane;
+
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
 
@@ -90,11 +94,10 @@ public class HomeController implements Initializable, ShoppingCartListener {
         // TODO
         model.getShoppingCart().addShoppingCartListener(this);
 
-        updateProductList(model.getProducts());
+        updateRightPanel();
         updateTopPanel();
         updateBottomPanel();
         updateLeftPanel();
-
         setupAccountPane();
 
         // Load the NamePanel and add it to dynamicPane
@@ -105,7 +108,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
         // The NamePanel holds a reference to the main controller (this class)
         AnchorPane namePane = new NamePanel(this);
         dynamicPane.getChildren().add(namePane);
-        grayPane.setStyle("-fx-background-color: F0F0F0");
         grayPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -113,7 +115,24 @@ public class HomeController implements Initializable, ShoppingCartListener {
             }
         });
 
+        updateProductList(model.getProducts());
+
         searchField.requestFocus();
+    }
+
+    private void updateRightPanel() {
+        updateCartPanel();
+    }
+
+    private void updateCartPanel() {
+        cartFlowPane.getChildren().clear();
+        for (ShoppingItem item : model.getShoppingCart().getItems()
+             ) {
+            System.out.println("new " + item.getProduct().toString());
+            //cartFlowPane.getChildren().add(new Button(item.getProduct().getName()));
+
+            cartFlowPane.getChildren().add(new ItemPanel(this, item));
+        }
     }
 
     private void updateTopPanel() {
@@ -148,7 +167,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private void clearSearchField() {
         searchField.clear();
         grayPane.toBack();
-
     }
 
     //Shopping cart actions
@@ -178,6 +196,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private void handleCategoryClicked(Button source) {
         clearSearchField();
+        updateCartPanel();
         openCategory(source.getAccessibleText());
     }
 
@@ -342,4 +361,12 @@ public class HomeController implements Initializable, ShoppingCartListener {
         shopPane.getChildren().remove(productDetail);
     }
 
+    public void openProductView(Product product) {
+        System.out.println("Open " + product.getName());
+
+        ProductDetail productDetail = new ProductDetail(this, new ProductPanel(this, product), product);
+
+        centerPane.setVisible(false);
+        shopPane.getChildren().add(productDetail);
+    }
 }
