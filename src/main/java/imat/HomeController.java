@@ -69,6 +69,15 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private FlowPane cartFlowPane;
 
+    //Wizard pane
+    @FXML
+    private AnchorPane wizardCart;
+    @FXML
+    private AnchorPane wizardInfo;
+    @FXML
+    private AnchorPane wizardBuy;
+
+
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
     private AccountPanel accountPane;
@@ -252,6 +261,24 @@ public class HomeController implements Initializable, ShoppingCartListener {
     public void closeAccountView() {
         //updateCreditCard();
         shopPane.toFront();
+    }
+
+    public void openWizard() {
+        wizardCart.toFront();
+    }
+
+    public void openWizardInfo() {
+        wizardInfo.toFront();
+    }
+
+    public void openBuy() {
+        wizardBuy.toFront();
+    }
+
+    public void closeWizard() {
+        wizardCart.toBack();
+        wizardBuy.toBack();
+        wizardInfo.toBack();
     }
 
     public void openNameView() {
