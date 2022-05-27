@@ -26,9 +26,6 @@ public class OrderPanel extends AnchorPane {
     @FXML Label productTitleLabel;
     @FXML Label productPrizeLabel;
     @FXML Label productCount;
-    @FXML Button productAdd;
-    @FXML Button productRemove;
-    @FXML Button productDecrease;
 
 
     private final HomeModel model = HomeModel.getInstance();
