@@ -76,10 +76,55 @@
                       </Tab>
                       <Tab text="Leveransuppgifter">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                           <AnchorPane prefHeight="300.0" prefWidth="500.0" styleClass="color-accent-2">
+                              <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="300.0" stroke="#000000d0" strokeType="INSIDE" width="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label layoutX="97.0" layoutY="14.0" text="Adressinformation">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="-27.0" layoutY="43.0" prefWidth="95.0" text="Förnamn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="111.0" layoutY="50.0" promptText="Per" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="75.0" prefWidth="95.0" text="Efternamn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="80.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="121.0" layoutY="60.0" promptText="Person" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0" />
+                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="100.0" prefWidth="95.0" text="Adress:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="110.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="121.0" layoutY="60.0" promptText="Gatuadress 123" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="110.0" />
+                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="125.0" prefWidth="95.0" text="Postnummer:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="121.0" layoutY="60.0" promptText="123 12" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
+                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="150.0" prefWidth="95.0" text="Postort:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="170.0">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextField layoutX="121.0" layoutY="60.0" promptText="Byn" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="170.0" />
+                           </children>
+                           </AnchorPane>
                         </content>
                       </Tab>
-                       <Tab text="Historik"
+                       <Tab text="Historik">
+                          <AnchorPane prefHeight="300.0" prefWidth="500.0" styleClass="color-accent-2">
+                          <children>
+                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="300.0" stroke="#000000d0" strokeType="INSIDE" width="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                          </children>
+                          </AnchorPane>
+                       </Tab>
                     </tabs>
                   </TabPane>
                </children>
