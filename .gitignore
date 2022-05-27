@@ -22,4 +22,6 @@
 hs_err_pid*
 /.idea/
 /target/
-/HomeController-DESKTOP-T98ULKJ.java
+
+# sync conflicts
+*-DESKTOP-T98ULKJ.*
