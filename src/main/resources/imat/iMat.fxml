@@ -11,8 +11,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -37,8 +40,15 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <items>
+                        <GridPane AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
                                     <Label layoutX="86.0" layoutY="10.0" text="Betalningsinformation" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="10.0">
@@ -84,7 +94,7 @@
                                     <TextField fx:id="cvcField" prefWidth="40.0" promptText="123" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="170.0" />
                                  </children>
                               </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" GridPane.columnIndex="1">
                                  <children>
                                     <Label layoutX="97.0" layoutY="14.0" text="Adressinformation">
                                        <font>
@@ -96,35 +106,35 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="111.0" layoutY="50.0" promptText="Per" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                                    <TextField layoutX="111.0" layoutY="50.0" promptText="Per" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
                                     <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="75.0" prefWidth="95.0" text="Efternamn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="80.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Person" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0" />
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Person" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0" />
                                     <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="100.0" prefWidth="95.0" text="Adress:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="110.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Gatuadress 123" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="110.0" />
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Gatuadress 123" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="110.0" />
                                     <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="125.0" prefWidth="95.0" text="Postnummer:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="121.0" layoutY="60.0" promptText="123 12" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="123 12" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
                                     <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="150.0" prefWidth="95.0" text="Postort:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="170.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Byn" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="170.0" />
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Byn" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="170.0" />
                                  </children>
                               </AnchorPane>
-                          </items>
-                        </SplitPane>
+                           </children>
+                        </GridPane>
                         <Button mnemonicParsing="false" onMouseClicked="#openBuy" prefHeight="56.0" prefWidth="100.0" text="Nästa" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0">
                            <font>
                               <Font size="18.0" />
