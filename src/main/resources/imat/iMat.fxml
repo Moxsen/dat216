@@ -2,16 +2,20 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" stylesheets="@iMat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" stylesheets="@iMat.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
     <children>
         <StackPane fx:id="stackPane" prefHeight="560.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -21,6 +25,213 @@
                </StackPane.margin></AnchorPane>
                 <AnchorPane fx:id="shopPane" prefHeight="240.0" prefWidth="720.0">
                     <children>
+                  <AnchorPane fx:id="wizardKundvagn" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" stylesheets="@iMat.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="260.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="260.0">
+                           <image>
+                              <Image url="@.dat215/Wizard_guide_1.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="123.0" layoutY="395.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="100.0" text="Tillbaka" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="120.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="506.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="100.0" text="Nästa" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="120.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="14.0" layoutY="14.0" text="Dina valda varor" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <FlowPane layoutX="20.0" layoutY="44.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="46.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="wizardKöp" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" stylesheets="@iMat.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="260.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="260.0">
+                           <image>
+                              <Image url="@.dat215/Wizard_guide_3.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="123.0" layoutY="395.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="100.0" text="Tillbaka" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="120.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="506.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="100.0" text="Gör köp" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="120.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="14.0" layoutY="14.0" text="Leveranstider" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <RadioButton layoutX="14.0" layoutY="44.0" mnemonicParsing="false" text="Torsdag 10:00 - 12:00" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="45.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton layoutX="14.0" layoutY="71.0" mnemonicParsing="false" text="Torsdag 12:00 - 14:00" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="75.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton layoutX="18.0" layoutY="98.0" mnemonicParsing="false" text="Torsdag 14:00 - 16:00" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="105.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton layoutX="8.0" layoutY="125.0" mnemonicParsing="false" text="Torsdag 16:00 - 18:00" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="135.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </RadioButton>
+                        <Label layoutX="260.0" layoutY="21.0" text="Sammanfattning köp" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="260.0" layoutY="50.0" text="Pris:" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="50.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="263.0" layoutY="80.0" text="Antal varor:" AnchorPane.topAnchor="80.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="263.0" layoutY="110.0" text="Varor:" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="110.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="360.0" layoutY="55.0" text="462,50 Kr" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="50.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="360.0" layoutY="85.0" text="19 St" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="80.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <FlowPane layoutX="260.0" layoutY="149.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="wizardInfo" layoutX="10.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" stylesheets="@iMat.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="86.0" layoutY="10.0" text="Betalningsinformation" AnchorPane.leftAnchor="86.0" AnchorPane.topAnchor="10.0">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" prefWidth="175.0" text="Korttyp:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="cardTypeCombo" prefWidth="140.0" promptText="[Mastercard, Visa]" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="50.0" />
+                                    <Label alignment="CENTER_RIGHT" prefWidth="175.0" text="Kortnummer:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="80.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="numberTextField" prefWidth="140.0" promptText="1234 1234 1234 1234" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="80.0" />
+                                    <Label alignment="CENTER_RIGHT" prefWidth="175.0" text="Kortinnehavarens namn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="110.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="nameTextField" prefWidth="140.0" promptText="Per Person" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="110.0" />
+                                    <Label alignment="CENTER_RIGHT" prefWidth="175.0" text="Giltighetsdatum:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="monthCombo" prefWidth="55.0" promptText="06" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="140.0" />
+                                    <Label text="/" AnchorPane.leftAnchor="252.0" AnchorPane.topAnchor="140.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="yearCombo" prefWidth="55.0" promptText="23" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="140.0" />
+                                    <Label alignment="CENTER_RIGHT" prefWidth="175.0" text="CVC:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="170.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="cvcField" prefWidth="40.0" promptText="123" AnchorPane.leftAnchor="195.0" AnchorPane.topAnchor="170.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <Label layoutX="97.0" layoutY="14.0" text="Adressinformation">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER_RIGHT" layoutX="-27.0" layoutY="43.0" prefWidth="95.0" text="Förnamn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="111.0" layoutY="50.0" promptText="Per" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="75.0" prefWidth="95.0" text="Efternamn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="80.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Person" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="100.0" prefWidth="95.0" text="Adress:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="110.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Gatuadress 123" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="110.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="125.0" prefWidth="95.0" text="Postnummer:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="123 12" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="150.0" prefWidth="95.0" text="Postort:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="170.0">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="121.0" layoutY="60.0" promptText="Byn" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="170.0" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="260.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="260.0">
+                           <image>
+                              <Image url="@.dat215/Wizard_guide_2.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="100.0" text="Nästa" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="120.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="123.0" layoutY="395.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="100.0" text="Tillbaka" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="120.0">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                         <AnchorPane fx:id="topPane" prefHeight="100.0" styleClass="color-primary" stylesheets="@iMat.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <TextField fx:id="searchField" layoutX="150.0" layoutY="34.0" onAction="#handleSearchAction" onKeyTyped="#handleSearchTyping" prefHeight="35.0" prefWidth="476.0" promptText="Sök bland våra matvaror..." AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="34.0">
