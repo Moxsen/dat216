@@ -7,34 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="orderPane" prefHeight="60.0" prefWidth="200.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="orderItemPane" prefHeight="60.0" prefWidth="200.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="productTitleLabel" layoutX="24.0" layoutY="18.0" text="Titel" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
+      <Label fx:id="orderLabel" layoutX="24.0" layoutY="18.0" text="Titel" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="2.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="productPrizeLabel" layoutX="7.0" layoutY="36.0" text="0,00 kr" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0">
+      <Label fx:id="dateLabel" layoutX="7.0" layoutY="36.0" text="0,00 kr" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="productAdd" layoutX="54.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleIncreaseAction" prefHeight="20.0" prefWidth="20.0" styleClass="clickable" text="+" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="0.0">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
-      <Button fx:id="productDecrease" layoutX="50.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleDecreaseAction" prefHeight="20.0" prefWidth="20.0" styleClass="clickable" text="-" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="55.0">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
-      <Button fx:id="productRemove" layoutX="172.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleRemoveAction" prefHeight="21.0" prefWidth="20.0" style="-fx-background-color: #FF0000;" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
-         <font>
-            <Font size="8.0" />
-         </font>
-      </Button>
-      <Label fx:id="productCount" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="13.0" prefWidth="35.0" text="XX" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="20.0">
+      <Label fx:id="orderCost" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="13.0" prefWidth="35.0" text="XX" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="20.0">
          <font>
             <Font size="15.0" />
          </font>

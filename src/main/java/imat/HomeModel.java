@@ -206,6 +206,10 @@ public class HomeModel {
 
     }
 
+    public List<Order> getOrders() {
+        return iMatDataHandler.getOrders();
+    }
+
     public void shutDown() {
         iMatDataHandler.shutDown();
     }
