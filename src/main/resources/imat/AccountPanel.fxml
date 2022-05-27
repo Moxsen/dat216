@@ -14,7 +14,7 @@
                <children>
                   <TabPane tabClosingPolicy="UNAVAILABLE">
                     <tabs>
-                      <Tab text="Untitled Tab 1">
+                      <Tab text="Betalningsinformation">
                         <content>
                           <AnchorPane>
                                  <children>
@@ -74,11 +74,12 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Untitled Tab 2">
+                      <Tab text="Leveransuppgifter">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                         </content>
                       </Tab>
+                       <Tab text="Historik"
                     </tabs>
                   </TabPane>
                </children>
