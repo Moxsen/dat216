@@ -31,7 +31,7 @@ public class OrderHistoryItem extends AnchorPane {
     private Order order;
 
     public OrderHistoryItem(Order order) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("smallCartItem.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderItem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -46,9 +46,9 @@ public class OrderHistoryItem extends AnchorPane {
     }
 
     private void updateOrderPanel(Order order) {
-        orderLabel.setText(String.valueOf(order.getOrderNumber()));
+        orderLabel.setText("Ordernummer: " + String.valueOf(order.getOrderNumber()));
         dateLabel.setText(String.valueOf(order.getDate()));
-        orderCost.setText(String.valueOf(getTotalOrderCost()));
+        orderCost.setText(String.valueOf(getTotalOrderCost()) + " Kr");
     }
 
     public double getTotalOrderCost() {

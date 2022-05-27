@@ -119,6 +119,13 @@ public class AccountPanel extends AnchorPane {
 
     @FXML
     private void saveInformation() {
+        saveCardInformation();
+        saveDeliveryInformation();
+
+        this.toBack();
+    }
+
+    private void saveCardInformation() {
 
         CreditCard card = model.getCreditCard();
 
@@ -133,8 +140,17 @@ public class AccountPanel extends AnchorPane {
 
         selectedValue = (String) yearCombo.getSelectionModel().getSelectedItem();
         card.setValidYear(Integer.parseInt(selectedValue));
+    }
 
-        this.toBack();
+    private void saveDeliveryInformation() {
+        Customer customer = model.getCustomer();
+
+        customer.setFirstName(firstNameTextField.getText());
+        customer.setLastName(surnameTextField.getText());
+
+        customer.setAddress(addressTextField.getText());
+        customer.setPostAddress(cityTextField.getText());
+        customer.setPostCode(codeTextField.getText());
     }
 
 
