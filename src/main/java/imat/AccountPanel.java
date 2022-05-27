@@ -14,7 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.CreditCard;
+import se.chalmers.cse.dat216.project.Customer;
+import se.chalmers.cse.dat216.project.Order;
 
 import java.io.IOException;
 
@@ -25,14 +28,22 @@ import java.io.IOException;
 public class AccountPanel extends AnchorPane {
 
     @FXML AnchorPane accountPane;
+    //Creditcard
     @FXML ComboBox cardTypeCombo;
     @FXML ComboBox  monthCombo;
     @FXML ComboBox  yearCombo;
     @FXML TextField numberTextField;
     @FXML TextField nameTextField;
-    @FXML TextField issuer;
-    @FXML TextField cvcField;
     @FXML Label purchasesLabel;
+    //Delivery
+    @FXML TextField firstNameTextField;
+    @FXML TextField surnameTextField;
+    @FXML TextField addressTextField;
+    @FXML TextField codeTextField;
+    @FXML TextField cityTextField;
+
+    //Order history
+    @FXML FlowPane orderHistoryFlowPane;
 
     private HomeModel model = HomeModel.getInstance();
 
@@ -51,12 +62,28 @@ public class AccountPanel extends AnchorPane {
 
         setupAccountPane();
 
-        this.creditCard = creditCard;
         updateAccountPanel();
 
     }
 
     private void updateAccountPanel() {
+        updateAccountTab();
+        updateDeliveryTab();
+        updateorderHistoryTab();
+
+    }
+    private void setupAccountPane() {
+
+        cardTypeCombo.getItems().addAll(model.getCardTypes());
+        monthCombo.getItems().addAll(model.getMonths());
+        yearCombo.getItems().addAll(model.getYears());
+
+        updateAccountTab();
+        updateDeliveryTab();
+        updateorderHistoryTab();
+    }
+
+    private void updateAccountTab() {
         CreditCard card = model.getCreditCard();
 
         numberTextField.setText(card.getCardNumber());
@@ -70,20 +97,28 @@ public class AccountPanel extends AnchorPane {
         purchasesLabel.setText(model.getNumberOfOrders()+ " tidigare inköp hos iMat");
 
     }
-    private void setupAccountPane() {
 
-        cardTypeCombo.getItems().addAll(model.getCardTypes());
+    private void updateDeliveryTab() {
+        Customer customer = model.getCustomer();
 
-        monthCombo.getItems().addAll(model.getMonths());
+        firstNameTextField.setText(customer.getFirstName());
+        surnameTextField.setText(customer.getLastName());
 
-        yearCombo.getItems().addAll(model.getYears());
+        addressTextField.setText(customer.getAddress());
+        cityTextField.setText(customer.getPostAddress());
+        codeTextField.setText(customer.getPostCode());
+    }
 
+    private void updateorderHistoryTab() {
+        for (Order order : model.getOrders()
+        ) {
+            orderHistoryFlowPane.getChildren().add(new OrderHistoryItem(order));
+        }
     }
 
 
-
     @FXML
-    private void updateCreditCard() {
+    private void saveInformation() {
 
         CreditCard card = model.getCreditCard();
 
