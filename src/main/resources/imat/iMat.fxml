@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" stylesheets="@iMat.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="720.0" stylesheets="@iMat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.HomeController">
     <children>
         <StackPane fx:id="stackPane" prefHeight="560.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -173,7 +173,18 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <FlowPane layoutX="20.0" layoutY="44.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="46.0" />
+                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="112.0" prefHeight="430.0" styleClass="color-accent-1" vbarPolicy="ALWAYS" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="90.0">
+                           <content>
+                              <FlowPane fx:id="wizardFlowPane" hgap="5.0" prefHeight="457.0" styleClass="color-accent-1" vgap="4.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets bottom="150.0" left="60.0" right="60.0" top="10.0" />
+                                 </padding>
+                              </FlowPane>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="wizardBuy" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" stylesheets="@iMat.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">

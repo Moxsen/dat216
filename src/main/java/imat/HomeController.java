@@ -76,6 +76,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private AnchorPane wizardInfo;
     @FXML
     private AnchorPane wizardBuy;
+    @FXML
+    private FlowPane wizardFlowPane;
 
 
     // Other variables
@@ -265,6 +267,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     public void openWizard() {
         wizardCart.toFront();
+        updateWizProductList(model.getShoppingCart().getItems());
     }
 
     public void openWizardInfo() {
@@ -295,12 +298,19 @@ public class HomeController implements Initializable, ShoppingCartListener {
         updateCartPanel();
     }
 
-
     private void updateProductList(List<Product> products) {
         System.out.println("updateProductList " + products.size());
         productsFlowPane.getChildren().clear();
         for (Product product : products) {
             productsFlowPane.getChildren().add(new ProductPanel(this, product));
+        }
+    }
+
+    private void updateWizProductList(List<ShoppingItem> items) {
+        System.out.println("updateWizProductList " + items.size());
+        wizardFlowPane.getChildren().clear();
+        for (ShoppingItem item : items) {
+            wizardFlowPane.getChildren().add(new ProductPanel(this, item.getProduct()));
         }
     }
 
