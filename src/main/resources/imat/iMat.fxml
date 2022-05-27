@@ -203,7 +203,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="506.0" layoutY="405.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="100.0" text="Gör köp" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0">
+                        <Button layoutX="506.0" layoutY="405.0" mnemonicParsing="false" onAction="#placeOrder" prefHeight="56.0" prefWidth="100.0" text="Gör köp" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="120.0">
                            <font>
                               <Font size="18.0" />
                            </font>

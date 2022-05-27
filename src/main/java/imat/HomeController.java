@@ -284,6 +284,11 @@ public class HomeController implements Initializable, ShoppingCartListener {
         wizardInfo.toBack();
     }
 
+    @FXML
+    private void placeOrder(ActionEvent event) {
+        model.placeOrder();
+    }
+
     public void openNameView() {
         dynamicPane.toFront();
     }
