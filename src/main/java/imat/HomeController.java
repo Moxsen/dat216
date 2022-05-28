@@ -120,6 +120,9 @@ public class HomeController implements Initializable, ShoppingCartListener {
         closeWizard();
         //closeProductView(...);
         updateProductList(model.getProducts());
+        for (Node node : categoryFlowPane.getChildren()) {
+            node.getStyleClass().remove("category-marked");
+        }
     }
 
     // Shop pane actions
