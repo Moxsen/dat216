@@ -268,20 +268,33 @@
                   </AnchorPane>
                         <AnchorPane fx:id="topPane" prefHeight="100.0" styleClass="color-primary" stylesheets="@iMat.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <TextField fx:id="searchField" layoutX="150.0" layoutY="34.0" onAction="#handleSearchAction" onKeyTyped="#handleSearchTyping" prefHeight="35.0" prefWidth="476.0" promptText="Sök bland våra matvaror..." AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="34.0">
+                                <TextField fx:id="searchField" layoutX="150.0" layoutY="34.0" onAction="#handleSearchAction" onKeyTyped="#handleSearchTyping" prefHeight="35.0" prefWidth="476.0" promptText="Sök bland våra matvaror..." AnchorPane.bottomAnchor="30.5" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="30.5">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
                                 </TextField>
-                                <Button layoutX="612.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="60.0" text="Sök" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="35.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Button>
-                                <Button layoutX="27.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleShowAccountAction" text="iMat" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="34.0">
+                                <Button layoutX="27.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleShowAccountAction" text="iMat" AnchorPane.bottomAnchor="30.5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.5">
                                     <font>
                                         <Font size="18.0" />
                                     </font>
                                 </Button>
+                                <Button layoutX="430.0" layoutY="31.5" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="60.0" text="Sök" AnchorPane.bottomAnchor="33.5" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="31.5">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="662.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="33.0" AnchorPane.bottomAnchor="30.5" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.5">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="29.0" fitWidth="29.0">
+                                 <image>
+                                    <Image url="@.dat215/freepik_account.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                             </children>
                         </AnchorPane>
                         <AnchorPane fx:id="leftPane" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
