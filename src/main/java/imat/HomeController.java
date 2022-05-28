@@ -185,6 +185,11 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private void handleCategoryClicked(Button source) {
         clearSearchField();
         openCategory(source.getAccessibleText());
+
+        for (Node node : categoryFlowPane.getChildren()) {
+            node.getStyleClass().remove("category-marked");
+        }
+        source.getStyleClass().add("category-marked");
     }
 
     private void openCategory(String categoryString) {
