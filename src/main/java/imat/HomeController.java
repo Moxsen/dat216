@@ -12,13 +12,11 @@ import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import se.chalmers.cse.dat216.project.*;
 
@@ -28,7 +26,6 @@ import se.chalmers.cse.dat216.project.*;
  * @author oloft
  */
 public class HomeController implements Initializable, ShoppingCartListener {
-    //
     // Strings
     private String favs = "Favoriter";
 
@@ -47,10 +44,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private AnchorPane shopPane;
     @FXML
     private AnchorPane grayPane;
-    //@FXML
-    //private Label itemsLabel;
-    //@FXML
-    //private Label costLabel;
     @FXML
     private FlowPane productsFlowPane;
     @FXML
@@ -87,7 +80,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         model.getShoppingCart().addShoppingCartListener(this);
         updateProductList(model.getProducts());
 
@@ -105,14 +97,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         // The NamePanel holds a reference to the main controller (this class)
         accountPane = new AccountPanel(this, model.getCreditCard());
         stackPane.getChildren().add(accountPane);
-        grayPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                clearSearchField();
-            }
-        });
-
-
+        grayPane.setOnMouseClicked(mouseEvent -> clearSearchField());
     }
 
     private void updateRightPanel() {
@@ -168,6 +153,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private void handleBuyItemsAction(ActionEvent event) {
         model.placeOrder();
+        closeWizard();
         //costLabel.setText("Köpet klart!");
     }
 
@@ -227,8 +213,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private void updateCategoryFlowPane(ObservableList<Node> nodes) {
         addCategory(nodes, favs);
         addCategory(nodes, "Just nu");
-        for (Node node : nodes
-        ) {
+        for (Node node : nodes) {
             node.getStyleClass().setAll("specialCategory");
         }
         addCategories(nodes);
@@ -238,25 +223,18 @@ public class HomeController implements Initializable, ShoppingCartListener {
         Button button = new Button(text.toLowerCase(Locale.ROOT).trim().replace("_", " ").replaceFirst("[a-z]", text.substring(0,1)));
         button.setAccessibleText(text);
         button.getStyleClass().setAll("categoryButton");
-        button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                handleCategoryClicked((Button) mouseEvent.getSource());
-            }
-        });
+        button.setOnMouseClicked(mouseEvent -> handleCategoryClicked((Button) mouseEvent.getSource()));
         nodes.add(button);
     }
 
     private void addCategories(ObservableList<Node> nodes) {
-        for (String productCategoryString: model.getProductCategories()
-        ) {
+        for (String productCategoryString: model.getProductCategories()) {
             addCategory(nodes, productCategoryString);
         }
     }
 
     // Navigation
     public void openAccountView() {
-
         accountPane.toFront();
     }
 
@@ -282,11 +260,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
         wizardCart.toBack();
         wizardBuy.toBack();
         wizardInfo.toBack();
-    }
-
-    @FXML
-    private void placeOrder(ActionEvent event) {
-        model.placeOrder();
     }
 
     public void openNameView() {
@@ -321,14 +294,12 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     private void updateCenterPanel() {
         ShoppingCart shoppingCart = model.getShoppingCart();
-        for (Node node : productsFlowPane.getChildren()
-             ) {
+        for (Node node : productsFlowPane.getChildren()) {
             ProductPanel prdPnl = (ProductPanel) node;
             prdPnl.updateProductCount();
         }
         //itemsLabel.setText("Antal varor: " + shoppingCart.getItems().size());
         //costLabel.setText("Kostnad: " + String.format("%.2f",shoppingCart.getTotal()));
-
     }
 
     public void openProductView(ProductPanel panel, Product product) {
