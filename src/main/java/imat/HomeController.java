@@ -97,6 +97,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         // The NamePanel holds a reference to the main controller (this class)
         accountPane = new AccountPanel(this, model.getCreditCard());
         stackPane.getChildren().add(accountPane);
+        accountPane.toBack();
         grayPane.setOnMouseClicked(mouseEvent -> clearSearchField());
     }
 
