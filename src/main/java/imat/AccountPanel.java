@@ -110,12 +110,14 @@ public class AccountPanel extends AnchorPane {
     }
 
     private void updateorderHistoryTab() {
-        for (Order order : model.getOrders()
-        ) {
+        // Sort orders by most recent
+        model.getOrders().sort((a, b) -> b.getOrderNumber() - a.getOrderNumber());
+
+        orderHistoryFlowPane.getChildren().clear();
+        for (Order order : model.getOrders()) {
             orderHistoryFlowPane.getChildren().add(new OrderHistoryItem(order));
         }
     }
-
 
     @FXML
     private void saveInformation() {
