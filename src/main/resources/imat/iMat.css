@@ -50,6 +50,10 @@
     -fx-font-size: 20
 }
 
+.category-marked {
+    -fx-background-color: #ACACAC;
+}
+
 .button:hover, .categoryButton:hover, .specialCategory:hover {
     -fx-cursor: hand;
     -fx-background-insets: 0;
