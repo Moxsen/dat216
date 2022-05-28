@@ -5,14 +5,12 @@
  */
 package imat;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.CreditCard;
@@ -45,6 +43,8 @@ public class AccountPanel extends AnchorPane {
     //Order history
     @FXML FlowPane orderHistoryFlowPane;
 
+    @FXML TabPane tabPane;
+
     private HomeModel model = HomeModel.getInstance();
 
     private CreditCard creditCard;
@@ -61,26 +61,25 @@ public class AccountPanel extends AnchorPane {
         }
 
         setupAccountPane();
+    }
 
+    public void switchToOrderTab() {
+        tabPane.getSelectionModel().select(2);
         updateAccountPanel();
-
     }
 
     private void updateAccountPanel() {
         updateAccountTab();
         updateDeliveryTab();
         updateorderHistoryTab();
-
     }
-    private void setupAccountPane() {
 
+    private void setupAccountPane() {
         cardTypeCombo.getItems().addAll(model.getCardTypes());
         monthCombo.getItems().addAll(model.getMonths());
         yearCombo.getItems().addAll(model.getYears());
 
-        updateAccountTab();
-        updateDeliveryTab();
-        updateorderHistoryTab();
+        updateAccountPanel();
     }
 
     private void updateAccountTab() {
@@ -95,7 +94,6 @@ public class AccountPanel extends AnchorPane {
         yearCombo.getSelectionModel().select(""+card.getValidYear());
 
         purchasesLabel.setText(model.getNumberOfOrders()+ " tidigare inköp hos iMat");
-
     }
 
     private void updateDeliveryTab() {
@@ -154,6 +152,5 @@ public class AccountPanel extends AnchorPane {
         customer.setPostAddress(cityTextField.getText());
         customer.setPostCode(codeTextField.getText());
     }
-
 
 }

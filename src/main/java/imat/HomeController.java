@@ -154,7 +154,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private void handleBuyItemsAction(ActionEvent event) {
         model.placeOrder();
         closeWizard();
-        //costLabel.setText("Köpet klart!");
+        openAccountView();
+        accountPane.switchToOrderTab();
     }
 
     @FXML
