@@ -114,6 +114,13 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     }
 
+    @FXML
+    private void goHome(ActionEvent event) {
+        closeWizard();
+        //closeProductView(...);
+        updateProductList(model.getProducts());
+    }
+
     // Shop pane actions
     @FXML
     private void handleShowAccountAction(ActionEvent event) {
