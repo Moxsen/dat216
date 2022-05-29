@@ -94,7 +94,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
     private AccountPanel accountPane;
-
+    @FXML private Label totalCostLabel;
 
 
     @Override
@@ -346,6 +346,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     public void shoppingCartChanged(CartEvent evt) {
         updateCenterPanel();
         updateCartPanel();
+        totalCostLabel.setText(model.getShoppingCart().getTotal() + " SEK");
     }
 
     private void updateProductList(List<Product> products) {
