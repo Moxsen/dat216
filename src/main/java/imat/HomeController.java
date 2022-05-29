@@ -71,6 +71,10 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private AnchorPane wizardBuy;
     @FXML
     private FlowPane wizardFlowPane;
+    @FXML RadioButton time1;
+    @FXML RadioButton time2;
+    @FXML RadioButton time3;
+    @FXML RadioButton time4;
 
     //Creditcard
     @FXML ComboBox cardTypeCombo;
@@ -88,6 +92,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     //Checkout
     @FXML Label wizardArticleCount;
     @FXML Label wizardTotalCost;
+
 
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
@@ -320,6 +325,14 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     public void openBuy() {
         wizardBuy.toFront();
+
+        final ToggleGroup group = new ToggleGroup();
+
+        time1.setToggleGroup(group);
+        time1.setSelected(true);
+        time2.setToggleGroup(group);
+        time3.setToggleGroup(group);
+        time4.setToggleGroup(group);
     }
 
     public void closeWizard() {
