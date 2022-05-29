@@ -144,7 +144,7 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="yearCombo" prefWidth="55.0" promptText="23" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="140.0" />
-                                    <Label alignment="CENTER_RIGHT" prefWidth="175.0" text="CVC:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="170.0">
+                                    <Label fx:id="cvcLabel" alignment="CENTER_RIGHT" prefWidth="175.0" text="CVC:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="170.0">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
