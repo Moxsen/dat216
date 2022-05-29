@@ -68,18 +68,18 @@ public class AccountPanel extends AnchorPane {
         updateAccountPanel();
     }
 
-    private void updateAccountPanel() {
-        updateAccountTab();
-        updateDeliveryTab();
-        updateorderHistoryTab();
-    }
-
     private void setupAccountPane() {
         cardTypeCombo.getItems().addAll(model.getCardTypes());
         monthCombo.getItems().addAll(model.getMonths());
         yearCombo.getItems().addAll(model.getYears());
 
         updateAccountPanel();
+    }
+
+    private void updateAccountPanel() {
+        updateAccountTab();
+        updateDeliveryTab();
+        updateorderHistoryTab();
     }
 
     private void updateAccountTab() {

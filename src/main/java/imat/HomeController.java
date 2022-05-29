@@ -72,6 +72,22 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML
     private FlowPane wizardFlowPane;
 
+    //Creditcard
+    @FXML ComboBox cardTypeCombo;
+    @FXML ComboBox  monthCombo;
+    @FXML ComboBox  yearCombo;
+    @FXML TextField numberTextField;
+    @FXML TextField nameTextField;
+    @FXML Label purchasesLabel;
+    //Delivery
+    @FXML TextField firstNameTextField;
+    @FXML TextField surnameTextField;
+    @FXML TextField addressTextField;
+    @FXML TextField codeTextField;
+    @FXML TextField cityTextField;
+    //Checkout
+    @FXML Label wizardArticleCount;
+    @FXML Label wizardTotalCost;
 
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
@@ -267,6 +283,39 @@ public class HomeController implements Initializable, ShoppingCartListener {
 
     public void openWizardInfo() {
         wizardInfo.toFront();
+        updateWizardInfo();
+    }
+
+    private void updateWizardInfo() {
+        cardTypeCombo.getItems().addAll(model.getCardTypes());
+        monthCombo.getItems().addAll(model.getMonths());
+        yearCombo.getItems().addAll(model.getYears());
+
+        updateCheckoutInfo();
+    }
+
+    private void updateCheckoutInfo() {
+        CreditCard card = model.getCreditCard();
+
+        numberTextField.setText(card.getCardNumber());
+        nameTextField.setText(card.getHoldersName());
+
+        cardTypeCombo.getItems().add(model.getCardTypes());
+        cardTypeCombo.getSelectionModel().select(card.getCardType());
+        monthCombo.getSelectionModel().select(""+card.getValidMonth());
+        yearCombo.getSelectionModel().select(""+card.getValidYear());
+
+        Customer customer = model.getCustomer();
+
+        firstNameTextField.setText(customer.getFirstName());
+        surnameTextField.setText(customer.getLastName());
+
+        addressTextField.setText(customer.getAddress());
+        cityTextField.setText(customer.getPostAddress());
+        codeTextField.setText(customer.getPostCode());
+
+        wizardArticleCount.setText(model.getShoppingCart().getItems().size() + " st");
+        wizardTotalCost.setText(model.getShoppingCart().getTotal() + " SEK");
     }
 
     public void openBuy() {
