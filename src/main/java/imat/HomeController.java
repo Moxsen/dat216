@@ -83,6 +83,8 @@ public class HomeController implements Initializable, ShoppingCartListener {
     @FXML TextField numberTextField;
     @FXML TextField nameTextField;
     @FXML Label purchasesLabel;
+    @FXML Label cvcLabel;
+    @FXML TextField cvcField;
     //Delivery
     @FXML TextField firstNameTextField;
     @FXML TextField surnameTextField;
@@ -97,6 +99,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
     // Other variables
     private final HomeModel model = HomeModel.getInstance();
     private AccountPanel accountPane;
+
 
 
     @Override
@@ -324,8 +327,11 @@ public class HomeController implements Initializable, ShoppingCartListener {
     }
 
     public void openBuy() {
-        wizardBuy.toFront();
-
+        cvcLabel.setStyle("-fx-font-size: 16");
+        if (cvcField.getText().length() == 3)
+            wizardBuy.toFront();
+        else cvcLabel.setStyle("-fx-font-size: 20");
+        
         final ToggleGroup group = new ToggleGroup();
 
         time1.setToggleGroup(group);
