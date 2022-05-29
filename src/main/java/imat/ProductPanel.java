@@ -7,6 +7,7 @@ package imat;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,6 +44,8 @@ public class ProductPanel extends AnchorPane {
     private final static double kImageWidth = 100.0;
     private final static double kImageRatio = 0.75;
 
+    public final Boolean productDiscrete;
+
     public ProductPanel(HomeController mainController, Product product) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ProductPanel.fxml"));
@@ -56,6 +59,7 @@ public class ProductPanel extends AnchorPane {
         }
 
         this.product = product;
+        this.productDiscrete = !product.getUnitSuffix().equals("kg") && !product.getUnitSuffix().equals("l");
 
         nameLabel.setText(product.getName() + " (" + product.getUnitSuffix() + ")");
         prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit().substring(0, 2));
@@ -76,7 +80,7 @@ public class ProductPanel extends AnchorPane {
         heart.setOnMouseClicked(this::fav);
         productPane.setOnMouseClicked((MouseEvent e) -> mainController.openProductView(this, this.product));
 
-        //productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+        productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
         //productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
     }
 
@@ -103,9 +107,15 @@ public class ProductPanel extends AnchorPane {
         }
     }
 
-    public void updateProductCountLabel(Double count) {
-        if (count % 1 == 0) productCount.setText("" + count.intValue());
-        else productCount.setText("" + count);
+    private void updateProductCountLabel(Double count) {
+        int pos = productCount.getCaretPosition();
+
+        if (productDiscrete)
+            productCount.setText("" + count.intValue());
+        else
+            productCount.setText("" + count);
+
+        productCount.positionCaret(pos);
     }
 
     @FXML
@@ -123,18 +133,29 @@ public class ProductPanel extends AnchorPane {
     }
 
     @FXML
-    public void handleProductCountEdit(KeyEvent keyEvent) {
-        if (productCount.lengthProperty().getValue() > 0) {
-            if (keyEvent.getCharacter().equals("."));
-            else if (Double.parseDouble(productCount.getText()) < 0) productCount.setText("0");
-            else if (Double.parseDouble(productCount.getText()) > 99) productCount.setText("99");
-            else {
-                double newCount = Double.parseDouble(productCount.getText());
-                System.out.println("Amount is " + newCount);
-                model.findInShoppingCart(new ShoppingItem(product)).setAmount(newCount);
+    private void handleProductCountEdit(KeyEvent keyEvent) {
+        String text = String.format("%.4s", productCount.getText());
 
-                model.getShoppingCart().fireShoppingCartChanged(new ShoppingItem(product), true);
+        try {
+            if (productDiscrete) {
+                int newCount = Integer.parseInt(text);
+                if (newCount < 0) newCount = 0;
+                if (newCount >= 100) newCount = 100;
+
+                System.out.println("Amount is " + newCount);
+
+                model.findInShoppingCart(new ShoppingItem(product)).setAmount(newCount);
+            } else {
+                double newCount = Double.parseDouble(text);
+                if (newCount < 0) newCount = 0;
+                if (newCount >= 100) newCount = 100;
+
+                System.out.println("Amount is " + newCount);
+
+                model.findInShoppingCart(new ShoppingItem(product)).setAmount(newCount);
             }
+        } catch (NumberFormatException ignored) {} finally {
+            model.getShoppingCart().fireShoppingCartChanged(new ShoppingItem(product), true);
         }
     }
 }

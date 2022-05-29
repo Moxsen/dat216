@@ -5,6 +5,7 @@
  */
 package imat;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -63,8 +65,7 @@ public class ProductDetail extends AnchorPane {
 
         updateProductCount();
 
-        //productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
-        //productCount.setOnKeyPressed((KeyEvent e) -> Platform.runLater(() -> productCount.selectAll()));
+        productCount.setOnMouseClicked((MouseEvent e) -> Platform.runLater(() -> productCount.selectAll()));
     }
 
     private void updateProductCount() {
@@ -72,11 +73,22 @@ public class ProductDetail extends AnchorPane {
         if (count > 0) {
             productRemove.setVisible(true);
             productCount.setVisible(true);
-            productCount.setText(String.valueOf(count));
+            updateProductCountLabel(count);
         } else {
             productRemove.setVisible(false);
             productCount.setVisible(false);
         }
+    }
+
+    private void updateProductCountLabel(Double count) {
+        int pos = productCount.getCaretPosition();
+
+        if (this.panel.productDiscrete)
+            productCount.setText("" + count.intValue());
+        else
+            productCount.setText("" + count);
+
+        productCount.positionCaret(pos);
     }
 
     @FXML
@@ -101,25 +113,30 @@ public class ProductDetail extends AnchorPane {
     }
 
     @FXML
-    public void handleProductCountEdit(KeyEvent keyEvent) {
+    private void handleProductCountEdit(KeyEvent keyEvent) {
+        String text = String.format("%.4s", productCount.getText());
+
         try {
-            if (Integer.parseInt(productCount.getText()) < 0) productCount.setText("0");
-            else if (Integer.parseInt(productCount.getText()) > 99) productCount.setText("99");
-            int newCount = Integer.parseInt(productCount.getText());
+            if (this.panel.productDiscrete) {
+                int newCount = Integer.parseInt(text);
+                if (newCount < 0) newCount = 0;
+                if (newCount >= 100) newCount = 100;
 
-            model.findInShoppingCart(new ShoppingItem(product)).setAmount(Integer.parseInt(productCount.getText()));
-            /*// Maybe increase count
-            for (int count = model.getCartCountOf(product); count < newCount; count++) {
-                model.addToShoppingCart(product);
+                System.out.println("Amount is " + newCount);
+
+                model.findInShoppingCart(new ShoppingItem(product)).setAmount(newCount);
+            } else {
+                double newCount = Double.parseDouble(text);
+                if (newCount < 0) newCount = 0;
+                if (newCount >= 100) newCount = 100;
+
+                System.out.println("Amount is " + newCount);
+
+                model.findInShoppingCart(new ShoppingItem(product)).setAmount(newCount);
             }
-
-            // Maybe decrease count
-            for (int count = model.getCartCountOf(product); count > newCount; count--) {
-                model.removeFromShoppingCart(product);
-            }*/
         } catch (NumberFormatException ignored) {} finally {
+            model.getShoppingCart().fireShoppingCartChanged(new ShoppingItem(product), true);
             updateProductCount();
-            //productCount.selectAll();
         }
     }
 }
