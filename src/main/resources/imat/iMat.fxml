@@ -266,11 +266,6 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label layoutX="263.0" layoutY="110.0" text="Varor:" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="110.0">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
                         <Label fx:id="wizardTotalCost" layoutX="360.0" layoutY="55.0" text="462,50 Kr" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="50.0">
                            <font>
                               <Font size="18.0" />
@@ -281,7 +276,6 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <FlowPane layoutX="260.0" layoutY="149.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
                      </children>
                   </AnchorPane>
                         <AnchorPane fx:id="leftPane" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
