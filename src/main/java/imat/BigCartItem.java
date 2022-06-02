@@ -47,7 +47,7 @@ public class BigCartItem extends AnchorPane {
         this.productDiscrete = !product.getUnitSuffix().equals("kg") && !product.getUnitSuffix().equals("l");
 
         nameLabel.setText(product.getName() + " (" + product.getUnitSuffix() + ")");
-        prizeLabel.setText(String.format("%.2f", product.getPrice()) + " " + product.getUnit().substring(0, 2));
+        prizeLabel.setText(String.format("%.2f", item.getTotal()) + " " + product.getUnit().substring(0, 2));
         imageView.setImage(HomeModel.getInstance().getImage(product, kImageWidth, kImageWidth*kImageRatio));
 
         updateProductCountLabel(item.getAmount());
