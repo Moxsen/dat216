@@ -13,9 +13,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import se.chalmers.cse.dat216.project.CreditCard;
-import se.chalmers.cse.dat216.project.Customer;
-import se.chalmers.cse.dat216.project.Order;
+import se.chalmers.cse.dat216.project.*;
 
 import java.io.IOException;
 
@@ -159,6 +157,10 @@ public class AccountPanel extends AnchorPane {
     public void openOrder(Order order) {
         itemsInOrder.toFront();
         System.out.println("OPEN ORDER " + order.getOrderNumber());
+        historyProducts.getChildren().clear();
+        for (ShoppingItem item : order.getItems()) {
+            historyProducts.getChildren().add(new BigCartItem(item));
+        }
     }
 
     @FXML
