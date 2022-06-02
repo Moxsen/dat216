@@ -8,6 +8,7 @@ package imat;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import se.chalmers.cse.dat216.project.Order;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -30,7 +31,7 @@ public class OrderHistoryItem extends AnchorPane {
 
     private Order order;
 
-    public OrderHistoryItem(Order order) {
+    public OrderHistoryItem(Order order, AccountPanel panel) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("OrderItem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -43,6 +44,8 @@ public class OrderHistoryItem extends AnchorPane {
 
         this.order = order;
         updateOrderPanel(this.order);
+
+        orderItemPane.setOnMouseClicked((MouseEvent e) -> panel.openOrder(order));
     }
 
     private void updateOrderPanel(Order order) {

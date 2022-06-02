@@ -44,6 +44,7 @@ public class AccountPanel extends AnchorPane {
     @FXML AnchorPane itemsInOrder;
     @FXML AnchorPane orderList;
     @FXML FlowPane orderHistoryFlowPane;
+    @FXML FlowPane historyProducts;
 
     @FXML TabPane tabPane;
 
@@ -115,7 +116,7 @@ public class AccountPanel extends AnchorPane {
 
         orderHistoryFlowPane.getChildren().clear();
         for (Order order : model.getOrders()) {
-            orderHistoryFlowPane.getChildren().add(new OrderHistoryItem(order));
+            orderHistoryFlowPane.getChildren().add(new OrderHistoryItem(order, this));
         }
     }
 
@@ -155,10 +156,12 @@ public class AccountPanel extends AnchorPane {
         customer.setPostCode(codeTextField.getText());
     }
 
-    public void openOrder() {
+    public void openOrder(Order order) {
         itemsInOrder.toFront();
+        System.out.println("OPEN ORDER " + order.getOrderNumber());
     }
 
+    @FXML
     public void closeOrder() {
         orderList.toFront();
     }

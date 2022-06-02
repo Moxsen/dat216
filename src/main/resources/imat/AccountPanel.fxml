@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="accountPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="accountPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" maxHeight="600.0" maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -162,7 +162,7 @@
                                     <children>
                                        <ScrollPane styleClass="color-accent-1" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                           <content>
-                                             <FlowPane />
+                                             <FlowPane fx:id="historyProducts" />
                                           </content>
                                        </ScrollPane>
                                        <Button mnemonicParsing="false" onMouseClicked="#closeOrder" text="Tillbaka" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
@@ -181,7 +181,7 @@
                                     <children>
                                        <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="color-accent-1" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                           <content>
-                                             <FlowPane fx:id="orderHistoryFlowPane" onMouseClicked="#openOrder" styleClass="color-accent-1" />
+                                             <FlowPane fx:id="orderHistoryFlowPane" styleClass="color-accent-1" />
                                           </content>
                                        </ScrollPane>
                                    <Button mnemonicParsing="false" onAction="#saveInformation" text="Spara &amp; Stäng" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
