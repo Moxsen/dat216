@@ -41,6 +41,8 @@ public class AccountPanel extends AnchorPane {
     @FXML TextField cityTextField;
 
     //Order history
+    @FXML AnchorPane itemsInOrder;
+    @FXML AnchorPane orderList;
     @FXML FlowPane orderHistoryFlowPane;
 
     @FXML TabPane tabPane;
@@ -153,4 +155,11 @@ public class AccountPanel extends AnchorPane {
         customer.setPostCode(codeTextField.getText());
     }
 
+    public void openOrder() {
+        itemsInOrder.toFront();
+    }
+
+    public void closeOrder() {
+        orderList.toFront();
+    }
 }

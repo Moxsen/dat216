@@ -15,102 +15,129 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="accountPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="accountPane" prefHeight="400.0" prefWidth="700.0" stylesheets="@iMat.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" maxHeight="400.0" maxWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" maxHeight="600.0" maxWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" maxHeight="400.0" maxWidth="700.0">
                <children>
-                  <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="tabPane" prefHeight="400.0" prefWidth="742.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Leveransuppgifter">
                         <content>
                            <AnchorPane prefHeight="300.0" prefWidth="500.0" styleClass="color-accent-2">
                               <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="300.0" stroke="#000000d0" strokeType="INSIDE" width="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              <Label layoutX="97.0" layoutY="14.0" text="Adressinformation">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="-27.0" layoutY="43.0" prefWidth="95.0" text="Förnamn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="firstNameTextField" layoutX="111.0" layoutY="50.0" promptText="Per" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="50.0" />
-                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="75.0" prefWidth="95.0" text="Efternamn:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="80.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="surnameTextField" layoutX="121.0" layoutY="60.0" promptText="Person" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0" />
-                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="100.0" prefWidth="95.0" text="Adress:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="110.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="addressTextField" layoutX="121.0" layoutY="60.0" promptText="Gatuadress 123" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="110.0" />
-                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="125.0" prefWidth="95.0" text="Postnummer:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="140.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="codeTextField" layoutX="121.0" layoutY="60.0" promptText="123 12" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="140.0" />
-                              <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="150.0" prefWidth="95.0" text="Postort:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="170.0">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="cityTextField" layoutX="121.0" layoutY="60.0" promptText="Byn" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="170.0" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="371.0" stroke="#000000d0" strokeType="INSIDE" width="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  <Button layoutX="368.0" layoutY="253.0" mnemonicParsing="false" onAction="#saveInformation" text="Spara &amp; Stäng" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                                     <font>
                                        <Font size="16.0" />
                                     </font>
                                  </Button>
+                                    <HBox alignment="CENTER" layoutX="210.0" layoutY="145.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                       <children>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                          <Label alignment="CENTER_RIGHT" prefWidth="95.0" text="Förnamn:" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" prefWidth="95.0" text="Efternamn:" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" prefWidth="95.0" text="Adress:" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="90.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" prefWidth="95.0" text="Postort:" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="170.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" prefWidth="95.0" text="Postnummer:" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Label>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                          <TextField fx:id="codeTextField" prefWidth="100.0" promptText="123 12" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
+                                          <TextField fx:id="surnameTextField" prefWidth="175.0" promptText="Person" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                                          <TextField fx:id="addressTextField" prefWidth="200.0" promptText="Gatuadress 123" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
+                                          <TextField fx:id="firstNameTextField" prefWidth="150.0" promptText="Per" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                          <TextField fx:id="cityTextField" prefWidth="150.0" promptText="Byn" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="170.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </HBox>
+                              <Label text="Adressinformation" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
                               </children>
                            </AnchorPane>
                         </content>
                       </Tab>
                       <Tab text="Betalningsinformation">
                         <content>
-                          <AnchorPane>
+                          <AnchorPane styleClass="color-accent-2">
                                  <children>
-                                    <AnchorPane prefHeight="300.0" prefWidth="500.0" styleClass="color-accent-2">
+                                    <AnchorPane prefHeight="300.0" prefWidth="500.0" styleClass="color-accent-2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="300.0" stroke="#000000d0" strokeType="INSIDE" width="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                          <Label layoutX="135.0" layoutY="54.0" text="Korttyp:" textAlignment="RIGHT" AnchorPane.rightAnchor="319.0">
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="372.0" stroke="#000000d0" strokeType="INSIDE" width="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <HBox alignment="CENTER" layoutX="243.0" layoutY="118.0" prefHeight="321.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                             <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Kortinnehavarens namn:" textAlignment="RIGHT" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Korttyp:" textAlignment="RIGHT" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Kortnummer:" textAlignment="RIGHT" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="90.0">
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label text="Giltighetsdatum:" textAlignment="RIGHT" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="130.0">
+                                                         <font>
+                                                            <Font size="13.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ComboBox fx:id="cardTypeCombo" prefWidth="150.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+                                                      <TextField fx:id="numberTextField" prefHeight="27.0" prefWidth="150.0" promptText="1234123412341234" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="90.0" />
+                                                      <TextField fx:id="nameTextField" prefHeight="27.0" prefWidth="235.0" promptText="Förnamn Efternamn" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                                      <ComboBox fx:id="monthCombo" prefHeight="27.0" prefWidth="65.0" promptText="04" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="130.0" />
+                                                      <Label text="/" textAlignment="RIGHT" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="130.0">
+                                                         <font>
+                                                            <Font name="System Bold" size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="yearCombo" prefHeight="27.0" prefWidth="65.0" promptText="18" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="130.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </HBox>
+                                          <Label layoutX="14.0" layoutY="14.0" text="Kunduppgifter" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
                                              <font>
-                                                <Font size="13.0" />
+                                                <Font name="System Bold" size="20.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="105.0" layoutY="96.0" text="Kortnummer:" textAlignment="RIGHT" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="96.0">
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="36.0" layoutY="134.0" text="Kortinnehavarens namn:" textAlignment="RIGHT" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="134.0">
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="84.0" layoutY="171.0" text="Giltighetsdatum:" textAlignment="RIGHT" AnchorPane.rightAnchor="319.0">
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="154.0" layoutY="208.0" text="CVC:" textAlignment="RIGHT" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="208.0">
-                                             <font>
-                                                <Font size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <ComboBox fx:id="cardTypeCombo" layoutX="193.0" layoutY="51.0" prefWidth="150.0" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="51.0" />
-                                          <TextField fx:id="numberTextField" layoutX="193.0" layoutY="93.0" prefHeight="27.0" prefWidth="150.0" promptText="1234123412341234" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="93.0" />
-                                          <TextField fx:id="nameTextField" layoutX="193.0" layoutY="131.0" prefHeight="27.0" prefWidth="235.0" promptText="Förnamn Efternamn" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="131.0" />
-                                          <ComboBox fx:id="monthCombo" layoutX="193.0" layoutY="168.0" prefHeight="27.0" prefWidth="64.0" promptText="04" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="168.0" />
-                                          <ComboBox fx:id="yearCombo" layoutX="279.0" layoutY="168.0" prefHeight="27.0" prefWidth="64.0" promptText="18" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="168.0" />
-                                          <Label layoutX="266.0" layoutY="173.0" text="/" textAlignment="RIGHT" AnchorPane.leftAnchor="266.0" AnchorPane.topAnchor="173.0" />
-                                          <TextField fx:id="cvcField" layoutX="196.0" layoutY="205.0" prefHeight="27.0" prefWidth="43.0" promptText="123" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="205.0" />
                                           <Label fx:id="purchasesLabel" layoutX="45.0" layoutY="258.0" text="3747 tidigare inköp hos iMat" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
                                              <font>
                                                 <Font size="13.0" />
@@ -121,11 +148,6 @@
                                                 <Font size="16.0" />
                                              </font>
                                           </Button>
-                                          <Label layoutX="14.0" layoutY="14.0" text="Kunduppgifter" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
-                                             <font>
-                                                <Font name="System Bold" size="16.0" />
-                                             </font>
-                                          </Label>
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -135,17 +157,40 @@
                        <Tab text="Historik">
                           <AnchorPane prefHeight="300.0" prefWidth="500.0" styleClass="color-accent-2">
                           <children>
-                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="300.0" stroke="#000000d0" strokeType="INSIDE" width="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                             <Button layoutX="368.0" layoutY="253.0" mnemonicParsing="false" onAction="#saveInformation" text="Spara &amp; Stäng" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
-                                <font>
-                                   <Font size="16.0" />
-                                </font>
-                             </Button>
-                                 <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="color-accent-1" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                    <content>
-                                       <FlowPane fx:id="orderHistoryFlowPane" styleClass="color-accent-2" />
-                                    </content>
-                                 </ScrollPane>
+                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="372.0" stroke="#000000d0" strokeType="INSIDE" width="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 <AnchorPane fx:id="itemsInOrder" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                       <ScrollPane styleClass="color-accent-1" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                          <content>
+                                             <FlowPane />
+                                          </content>
+                                       </ScrollPane>
+                                       <Button mnemonicParsing="false" onMouseClicked="#closeOrder" text="Tillbaka" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Button>
+                                       <Button mnemonicParsing="false" onAction="#saveInformation" text="Spara &amp; Stäng" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                          <font>
+                                             <Font size="16.0" />
+                                          </font>
+                                       </Button>
+                                    </children>
+                                 </AnchorPane>
+                                 <AnchorPane fx:id="orderList" prefHeight="200.0" prefWidth="200.0" styleClass="color-accent-2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                       <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="color-accent-1" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                          <content>
+                                             <FlowPane fx:id="orderHistoryFlowPane" onMouseClicked="#openOrder" styleClass="color-accent-1" />
+                                          </content>
+                                       </ScrollPane>
+                                   <Button mnemonicParsing="false" onAction="#saveInformation" text="Spara &amp; Stäng" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+                                      <font>
+                                         <Font size="16.0" />
+                                      </font>
+                                   </Button>
+                                    </children>
+                                 </AnchorPane>
 
                           </children>
                           </AnchorPane>

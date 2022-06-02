@@ -101,7 +101,6 @@ public class HomeController implements Initializable, ShoppingCartListener {
     private AccountPanel accountPane;
     @FXML private Label totalCostLabel;
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         model.getShoppingCart().addShoppingCartListener(this);
@@ -122,7 +121,7 @@ public class HomeController implements Initializable, ShoppingCartListener {
         accountPane = new AccountPanel(this, model.getCreditCard());
         stackPane.getChildren().add(accountPane);
         accountPane.toBack();
-        grayPane.setOnMouseClicked(mouseEvent -> clearSearchField());
+        //grayPane.setOnMouseClicked(mouseEvent -> clearSearchField());
     }
 
     private void updateRightPanel() {
