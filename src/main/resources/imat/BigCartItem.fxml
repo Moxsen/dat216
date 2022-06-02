@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="650.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="imageView" fitHeight="115.0" fitWidth="115.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-      <Label fx:id="nameLabel" layoutX="120.0" layoutY="22.0" text="Produktnamn" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="20.0">
+      <Label fx:id="nameLabel" layoutX="120.0" layoutY="36.0" text="Produktnamn" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="36.0">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label fx:id="prizeLabel" layoutX="323.0" layoutY="62.0" text="0,00 KR" AnchorPane.leftAnchor="334.0" AnchorPane.topAnchor="63.0">
+      <Label fx:id="prizeLabel" layoutX="322.0" layoutY="34.0" text="0,00 KR" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="34.0">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="productCount" layoutX="198.0" layoutY="60.0" prefHeight="46.0" prefWidth="57.0" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="55.0" />
+      <TextField fx:id="productCount" layoutX="244.0" layoutY="27.0" prefHeight="46.0" prefWidth="57.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="27.0" />
    </children>
 </fx:root>
